@@ -1,9 +1,8 @@
-import './App.css';
-import React, {useState} from 'react'
+import RoutesApp from './routes';
 
 function App() {
   return (
-    <h1>Hello</h1>
+    <RoutesApp/>
   );
 }
 
