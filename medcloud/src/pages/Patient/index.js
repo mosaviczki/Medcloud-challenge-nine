@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import Logo from '../../medcloud.png';
-import './home.css';
+import './patient.css';
 
-function Home() {
+function Patient() {
 
   const [values, setValues] = useState();
+  const {id} = useParams();
 
   const handleChangeValues = (value) => {
     setValues(prevValue => ({
@@ -15,22 +16,21 @@ function Home() {
   };
 
   return (
-    <div class='container-home'>
-        <div class='side-home'>
+    <div class='container'>
+        <div class='side'>
           <img src={Logo} className='logo'/>
           <h1 class='patient'>Pacientes</h1>
         </div>
         <div className='main'>
           <div className='box-patient'></div>
             <div className='head'>
-              <Link to='/formulario' className='buttonForms'>+ INSERIR PACIENTE</Link>
+              <Link to='/' className='buttonForms'>Voltar</Link>
             </div>
             <div className='patients'>
-
             </div>
         </div>
     </div>
   );
 }
 
-export default Home;
+export default Patient;

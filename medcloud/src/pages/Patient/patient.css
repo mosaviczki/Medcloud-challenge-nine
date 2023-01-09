@@ -4,12 +4,12 @@
     font-family: Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
     box-sizing: border-box;
 }
-.container-home{
+.container{
     width: 100vw;
     height: 100vh;
     display: flex;
 }
-.side-home{
+.side{
     background-color: #0a2435;
     width: 25%;
     padding: 10px;

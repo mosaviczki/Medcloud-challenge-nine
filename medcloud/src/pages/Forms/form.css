@@ -12,10 +12,16 @@
     background-color: #0a2435;
     width: 25%;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.logo{
+    width: 250px;
+    margin: 1rem;
 }
 .patient{
     color: white;
-    margin: 2rem auto;
+    margin: 1rem;
     font-size: 30px;
 }
 .patient::after {
@@ -62,7 +68,6 @@
     flex-direction: column;
     width: 90%;
 }
-
 input {
     width: 100%;
     margin: 0.6rem 0;
@@ -72,11 +77,9 @@ input {
     border-radius: 5px;
 
 }
-
-.input--box input:hover {
+.input-box input:hover {
     background-color: #cecece;
 }
-
 .section1 {
     margin-top: 30px;
     margin-bottom: 30px;
@@ -86,7 +89,6 @@ input {
     grid-gap: 30px;
     gap: 30px;
 }
-
 .section2 {
     margin-top: 30px;
     display: grid;
@@ -95,7 +97,6 @@ input {
     grid-gap: 30px;
     gap: 30px;
 }
-
 .section3 {
     margin-top: 30px;
     margin-bottom: 30px;
@@ -105,8 +106,7 @@ input {
     grid-gap: 30px;
     gap: 30px;
 }
-
-.label--email::after {
+.label-email::after {
     content: '';
     display: block;
     width: 100%;
