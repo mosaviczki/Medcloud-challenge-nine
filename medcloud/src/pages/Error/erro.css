@@ -1,0 +1,31 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+.buttonInitial{
+    width: 20%;
+    background-color: #2B93DD;
+    color: white;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    outline: none;
+    border-radius: 15px;
+    text-decoration:none;
+    text-align: center;
+    margin: 20px auto;
+}
+img{
+    width: 400px;
+    margin: 100px auto;
+}
+h1{
+    color: #2B93DD;
+    margin: 10px auto;
+}
