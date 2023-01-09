@@ -35,10 +35,17 @@ function Forms() {
     };
 
     const checkCEP = (zipcode) => {
-        const cep = zipcode.target.value.replace(/\D/g, '');
-        fetch(`httpss://viacep.com.br/ws/${cep}/json/`).then(res => res.json()).then(data => {
-            console.log(data);
-        });
+        const {cep} = zipcode.target.value.replace(/\D/g, '');
+        if (zipcode.target.value.lenght !== 8){
+            return;
+        }else{
+            fetch(`https://viacep.com.br/ws/${cep}/json/`).then(res => res.json()).then(data => {
+                console.log(data);
+                setValues(values.city,data.localidade)
+                setValues(values.uf,data.uf)
+            });
+        }
+
     }
 
     return (
@@ -126,7 +133,7 @@ function Forms() {
                             <div className="input-box">
                                 <label className='label-zipcode'>
                                     CEP
-                                    <input type='number' name='zipcode' className='input--zipcode' onChange={handleChangeValues} />
+                                    <input type='text' name='zipcode' className='input--zipcode' onBlur={checkCEP} />
                                 </label>
                             </div>
                             <div className="input-box">
