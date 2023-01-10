@@ -6,5 +6,6 @@ import { DetailUserController } from './controllers/user/DetailUserController';
 const router = Router();
 
 router.post('/cadastro', new CreateUserController().handle);
+router.post('/login', new AuthUserController().handle);
 
 export { router }
