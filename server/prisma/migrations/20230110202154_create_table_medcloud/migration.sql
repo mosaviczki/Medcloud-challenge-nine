@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE `users` (
-    `iduser` INTEGER NOT NULL AUTO_INCREMENT,
+    `iduser` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
     `image` VARCHAR(191) NULL,
     `phone` INTEGER NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE `users` (
 
 -- CreateTable
 CREATE TABLE `patients` (
-    `idpatient` INTEGER NOT NULL AUTO_INCREMENT,
+    `idpatient` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
     `image` VARCHAR(191) NULL,
     `birth` DATETIME(3) NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE `patients` (
     `zipcode` INTEGER NOT NULL,
     `city` VARCHAR(191) NOT NULL,
     `uf` VARCHAR(191) NOT NULL,
-    `user_id` INTEGER NOT NULL,
+    `user_id` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`idpatient`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

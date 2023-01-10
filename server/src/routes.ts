@@ -1,11 +1,10 @@
 import {Router, Request, Response } from 'express'
-
+import { CreateUserController } from './controllers/user/CreateUserController';
+import { AuthUserController } from './controllers/user/AuthUserController';
+import { DetailUserController } from './controllers/user/DetailUserController';
 
 const router = Router();
 
-router.get('/teste', (req: Request, res: Response)=>{
-    return ("Monique");
-    //throw new Error('Erro ao fazer essa requisicao')
-});
+router.post('/cadastro', new CreateUserController().handle);
 
 export { router }

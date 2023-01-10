@@ -12,7 +12,7 @@ datasource db {
 
 //criar uma migration: yarn prisma migrate dev
 model User{
-  iduser      Int        @id @default(autoincrement())
+  iduser      String        @id @default(uuid())
   name        String
   image       String?
   phone       Int
@@ -24,7 +24,7 @@ model User{
 }
 
 model Patient {
-  idpatient    Int       @id @default(autoincrement())
+  idpatient    String       @id @default(uuid())
   name         String
   image        String?
   birth        DateTime
@@ -43,7 +43,7 @@ model Patient {
   user User @relation(fields: [user_id], references: [iduser])
   
   @@map("patients")
-  user_id      Int
+  user_id      String
 }
 
 
