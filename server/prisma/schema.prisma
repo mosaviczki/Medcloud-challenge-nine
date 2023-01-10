@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+//criar uma migration: yarn prisma migrate dev
+model User{
+  iduser      Int        @id @default(autoincrement())
+  name        String
+  image       String?
+  phone       Int
+  email       String
+  password    String
+
+  @@map("users")
+  patients Patient[]
+}
+
+model Patient {
+  idpatient    Int       @id @default(autoincrement())
+  name         String
+  image        String?
+  birth        DateTime
+  phone        Int
+  cpf          Int
+  rg           Int
+  email        String
+  adress       String
+  numberAdress Int
+  district     String
+  complement   String?
+  zipcode      Int
+  city         String
+  uf           String
+
+  user User @relation(fields: [user_id], references: [iduser])
+  
+  @@map("patients")
+  user_id      Int
+}
+
+

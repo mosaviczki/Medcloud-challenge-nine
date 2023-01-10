@@ -2,10 +2,19 @@ import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
 import { router } from './routes';
 import cors from 'cors';
+import mysql from 'mysql';
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+const db = mysql.createPool({
+    host: "localhost",
+    port: 3306,
+    user: "root",
+    password: "",
+    database: "crudmedcloud"
+});
 
 app.use(router);
 
