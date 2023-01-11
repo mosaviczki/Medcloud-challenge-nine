@@ -3,20 +3,26 @@ import 'express-async-errors';
 import { router } from './routes';
 import cors from 'cors';
 import mysql from 'mysql';
+import path from 'path'
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-const db = mysql.createPool({
+/* const db = mysql.createPool({
     host: "localhost",
     port: 3306,
     user: "root",
     password: "",
     database: "crudmedcloud"
-});
+}); */
 
 app.use(router);
+
+app.use(
+    '/files', 
+    express.static(path.resolve(__dirname, '..', 'img'))
+)
 
 //Error Handling
 app.use((err: Error, req: Request, res:Response, next: NextFunction) => {
