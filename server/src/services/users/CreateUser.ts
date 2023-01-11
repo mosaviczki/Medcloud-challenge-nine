@@ -3,7 +3,7 @@ import { hash } from "bcryptjs";
 
 interface UserRequest{
     name: string,
-    phone: number,
+    phone: bigint,
     email: string,
     password: string,
     confPassword: string

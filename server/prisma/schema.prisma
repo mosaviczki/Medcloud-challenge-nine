@@ -15,7 +15,7 @@ model User{
   iduser      String        @id @default(uuid())
   name        String
   image       String?
-  phone       Int
+  phone       BigInt
   email       String
   password    String
 
@@ -28,15 +28,15 @@ model Patient {
   name         String
   image        String?
   birth        DateTime
-  phone        Int
-  cpf          Int
-  rg           Int
+  phone        BigInt
+  cpf          BigInt
+  rg           BigInt
   email        String
   adress       String
   numberAdress Int
   district     String
   complement   String?
-  zipcode      Int
+  zipcode      BigInt
   city         String
   uf           String
 

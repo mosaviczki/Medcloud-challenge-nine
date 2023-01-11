@@ -2,30 +2,30 @@ import prismaClient from "../../prisma";
 
 interface PatientRequest {
     name: string;
-    image: string;
+    //image: string;
     birth: string;
-    phone: number;
-    cpf: number;
-    rg: number;
+    phone: bigint;
+    cpf: bigint;
+    rg: bigint;
     email: string;
     adress: string;
     numberAdress: number;
     district: string;
     complement: string;
-    zipcode: number;
+    zipcode: bigint;
     city: string;
     uf: string;
     user_id: string;
 }
 
 class InsertPatient {
-    async execute({ name, image, birth, phone, cpf, rg, email, adress, numberAdress, district, 
+    async execute({ name, /* image,  */birth, phone, cpf, rg, email, adress, numberAdress, district, 
         complement, zipcode, city, uf, user_id }: PatientRequest) {
 
             const patient = await prismaClient.patient.create({
                 data:{
                     name: name, 
-                    image: image, 
+                    //image: image, 
                     birth: birth, 
                     phone: phone, 
                     cpf: cpf, 

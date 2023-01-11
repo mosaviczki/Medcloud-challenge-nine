@@ -18,6 +18,6 @@ router.post('/login', new AuthUserController().handle);
 router.get('/meusdados', isAuthenticated, new DetailUserController().handle);
 
 //Rotas de Patient
-router.post('/insert', isAuthenticated, upload.single('file'), new InsertPatientController().handle);
+router.post('/insert', isAuthenticated, /* upload.single('file'), */ new InsertPatientController().handle);
 
 export { router }
