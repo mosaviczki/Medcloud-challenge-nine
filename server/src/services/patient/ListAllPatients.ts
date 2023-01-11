@@ -1,8 +1,14 @@
 import prismaClient from "../../prisma";
 
+interface PatientRequest{
+    userid: string;
+}
 class ListAllPatients{
-    async execute(){
-        const patients = await prismaClient.patient.findMany({
+    async execute({userid}: PatientRequest){
+        const findByPatients = await prismaClient.patient.findMany({
+            where:{
+                user_id: userid
+            },
             select:{
                 name: true,
                 birth: true,
@@ -11,11 +17,13 @@ class ListAllPatients{
                 numberAdress: true,
                 district:true,
                 complement:true,
-                zipcode:true,
+                //zipcode:true,
                 city :true,
                 uf:true
             }
         })
+
+        return findByPatients;
     }
 }
 export {ListAllPatients}

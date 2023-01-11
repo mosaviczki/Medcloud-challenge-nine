@@ -37,7 +37,6 @@ class AuthUser{
                 expiresIn: '30d'
             }
         )
-        console.log(token)
         return{
             id: user.iduser,
             name: user.name,
