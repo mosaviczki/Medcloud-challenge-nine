@@ -4,12 +4,13 @@ interface IdForDelete{
     idpatient: string;
 }
 class DeletePatient{
-    async execute({idpatient}){
+    async execute({idpatient}: IdForDelete){
         const deletePatient = await prismaClient.patient.delete({
             where: {
-                idpatient: idpatient
-            },
-          })
+                idpatient: idpatient,
+            }
+        })
+        return deletePatient;
     }
 }
 

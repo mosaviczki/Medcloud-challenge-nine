@@ -14,13 +14,21 @@ interface InputUpdate{
 
 }
 class UpdatePatient{
-    async execute({idpatient, email}: InputUpdate){
+    async execute({idpatient, phone, email, adress, numberAdress, district, complement, zipcode, city, uf}: InputUpdate){
         const updatePatient = await prismaClient.patient.update({
             where: {
               idpatient: idpatient,
             },
             data: {
-              email: email
+              phone: phone,
+              email: email,
+              adress: adress,
+              numberAdress: numberAdress,
+              district: district,
+              complement: complement,
+              zipcode: zipcode,
+              city: city,
+              uf: uf
             },
           })
     }
