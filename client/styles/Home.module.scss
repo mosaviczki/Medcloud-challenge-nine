@@ -1,0 +1,79 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh;
+}
+
+.containerSide{
+    width: 40%;
+    background-color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.login{
+    margin: 2rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+}
+.boxInput{
+    width: 80%;
+    text-align: center;
+    display: flex;
+    flex-direction: column; 
+    padding: 10px;
+
+    form{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 30px;
+    }
+    h1{
+        color: var(--secondary-color);
+        font-size: 3rem;
+    }
+    h1::after{
+        background-color: var(--secondary-color);
+        content: "";
+        display: flex;
+        flex-direction: column;
+        height: 2px;
+        position: relative;
+        vertical-align: middle;
+        width: 80%;
+        margin: auto;
+        margin-top: 30px;
+    }
+    Input{
+        width: 80%;
+        margin: 2rem auto;
+    }
+    .text{
+        width: 80%;
+        margin: auto;
+        margin-top: 1rem;
+        text-align: start;
+        font-weight: bold;
+        color: var(--primary-color)
+    }
+
+    button{
+        margin: 2rem auto;
+        width: 60%;
+    }
+
+}
+
+@media (max-widht: 820px) {
+    .boxInput{
+        width: 80%;
+    }
+}
