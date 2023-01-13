@@ -2,8 +2,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../../styles/home.module.scss'
 import logoImg from '../../public/login.png'
-import { Input } from './components/ui/Input'
-import { Button } from './components/ui/Button'
+import { Input } from '../components/ui/Input'
+import { Button } from '../components/ui/Button'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -23,7 +24,11 @@ export default function Home() {
               <form>
                 <Input type="text" placeholder= "Email"/>
                 <Input type="password" placeholder="Password"/>
-                <a className={styles.text}>Não possui uma conta? Cadastre-se</a>
+
+                <Link href="/signup">
+                  <a className={styles.text}>Não possui uma conta? Cadastre-se</a>
+                </Link>
+      
                 <Button
                   type='submit'
                   //loading={true}
