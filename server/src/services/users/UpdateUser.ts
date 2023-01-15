@@ -3,7 +3,7 @@ import { hash } from "bcryptjs";
 
 interface IdForUpdate{
     user_id: string;
-    phone: bigint,
+    phone: string,
     email: string,
     password: string,
     confPassword: string

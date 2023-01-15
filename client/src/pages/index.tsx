@@ -2,36 +2,66 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../../styles/home.module.scss'
 import logoImg from '../../public/login.png'
+import { canSSRGuest } from '../utils/canSSRGuest'
+
 import { Input } from '../components/ui/Input'
 import { Button } from '../components/ui/Button'
 import Link from 'next/link'
+import { FormEvent, useContext, useState } from 'react'
+import { AuthContext } from '../contexts/AuthContext'
+import { toast } from 'react-toastify'
 
 export default function Home() {
+  const {signIn} = useContext(AuthContext)
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  async function handleLogin(event: FormEvent){
+    event.preventDefault();
+    
+    if(email === '' || password === ''){
+      toast.warning("Preencha todos os dados!")
+      return;
+    }
+
+    setLoading(true);
+
+    let data = {
+      email,
+      password
+    }
+
+    await signIn(data)
+
+    setLoading(false);
+  }
+
   return (
     <>
       <Head>
-        <title>Medcloud</title>
+        <title>Medcloud - Login</title>
         <link rel="icon" href="/cloud.png" />
       </Head>
-
       <div className={styles.container}>
         <div className={styles.containerSide}>
           <Image src={logoImg} alt='logo' width={280}/>
         </div>
         <div className={styles.login}>
           <div className={styles.boxInput}>
-            <h1>Login</h1>
-              <form>
-                <Input type="text" placeholder= "Email"/>
-                <Input type="password" placeholder="Password"/>
+            <h1>LOGIN</h1>
+              <form onSubmit={handleLogin}>
+                <Input type="text" placeholder= "Email" value={email} onChange={(e)=> setEmail(e.target.value)}/>
+                <Input type="password" placeholder="Password" value={password} onChange={(e)=> setPassword(e.target.value)}/>
 
-                <Link href="/signup">
-                  <a className={styles.text}>Não possui uma conta? Cadastre-se</a>
+                <Link className={styles.link} href="/signup">
+                  Não possui uma conta? Cadastre-se
                 </Link>
       
                 <Button
                   type='submit'
-                  //loading={true}
+                  loading={loading}
                 >
                   Login
                 </Button>
@@ -42,3 +72,10 @@ export default function Home() {
     </>
   )
 }
+
+export const getServerSideProps = canSSRGuest(async (ctx) =>{
+  return{
+    props: {}
+  }
+})
+

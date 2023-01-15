@@ -28,7 +28,6 @@ class AuthUser{
         const token = sign(
             {
                 name: user.name,
-                //phone:  user.phone,
                 email: user.email,
             },
             process.env.JWT_SECRET,
@@ -40,7 +39,7 @@ class AuthUser{
         return{
             id: user.iduser,
             name: user.name,
-            //phone: user.phone,
+            phone: user.phone,
             email: user.email,
             token: token
         }

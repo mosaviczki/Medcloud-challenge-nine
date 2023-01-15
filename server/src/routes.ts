@@ -23,17 +23,17 @@ const upload = multer(uploadConfig.upload("./img"))
 //Rotas de User
 router.post('/cadastro', new CreateUserController().handle);
 router.post('/login', new AuthUserController().handle);
-router.get('/home/me', isAuthenticated, new DetailUserController().handle);
-router.put('/home/me/update', isAuthenticated, new  UpdateUserController().handle);
-router.delete('/home/me/delete', isAuthenticated, new DeleteUserController().handle);
+router.get('/YourAccount', isAuthenticated, new DetailUserController().handle);
+router.put('/YourAccount/update', isAuthenticated, new  UpdateUserController().handle);
+router.delete('/YourAccount/delete', isAuthenticated, new DeleteUserController().handle);
 
 
 //Rotas de Patient
-router.post('/home/patient/insert', isAuthenticated, /* upload.single('file'), */ new InsertPatientController().handle);
-router.get('/home/patient', isAuthenticated, new ListAllPatientsController().handle);
-router.get('/home/patient/data', isAuthenticated, new ListOnePatientController().handle);
-router.put('/home/patient/update', isAuthenticated, new  UpdatePatientController().handle);
-router.delete('/home/patient/delete', isAuthenticated, new  DeletePatientController().handle);
+router.post('/insert', isAuthenticated, /* upload.single('file'), */ new InsertPatientController().handle);
+router.get('/dashboard', isAuthenticated, new ListAllPatientsController().handle);
+router.get('/patient/data', isAuthenticated, new ListOnePatientController().handle);
+router.put('/patient/update', isAuthenticated, new  UpdatePatientController().handle);
+router.delete('/patient/delete', isAuthenticated, new  DeletePatientController().handle);
 
 
 export { router }

@@ -2,13 +2,13 @@ import prismaClient from "../../prisma";
 
 interface IdForUpdate{
   idpatient: string;
-  phone: bigint;
+  phone: string;
   email: string;
   adress: string;
   numberAdress: number;
   district: string;
   complement: string;
-  zipcode: bigint;
+  zipcode: string;
   city: string;
   uf: string;
 }

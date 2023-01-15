@@ -37,8 +37,17 @@ app.use((err: Error, req: Request, res:Response, next: NextFunction) => {
         message: 'Internal server error.'
     })
 })
-
+declare global {
+    interface BigInt {
+      toJSON(): string;
+    }
+  }
+  
+  BigInt.prototype.toJSON = function (): string {
+    return this.toString();
+};
 //Running server
 app.listen(3001, () =>{
     console.log("Rodando servidor");
 });
+

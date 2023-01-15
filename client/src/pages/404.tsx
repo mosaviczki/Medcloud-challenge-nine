@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
+import styles from '../../styles/error.module.scss'
 
 export default function Erro() {
     return(
@@ -10,11 +12,11 @@ export default function Erro() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/cloud.png" />
             </Head>
-            <div className='content'>
+            <div className={styles.content}>
                 <img src='/imageError.svg' width={400}/>
                 <h1>OPS! NÃO ENCONTRAMOS ESSA PÁGINA</h1>
+                <Link href='/' className={styles.buttonInitial}>VOLTAR AO INICIO</Link>
             </div>
         </>
     )
 }
-//<Link to='/' className='buttonInitial'>VOLTAR AO INICIO</Link>
