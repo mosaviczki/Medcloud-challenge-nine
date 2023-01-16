@@ -13,7 +13,7 @@ type AuthContextData = {
 }
 type UserProps = {
     id: string;
-    phone: bigint;
+    phone: string;
     name: string;
     email:string;
 }

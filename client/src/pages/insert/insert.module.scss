@@ -1,0 +1,226 @@
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    *{
+        font-family: Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    }
+    
+    .logo {
+        width: 70%;
+    }
+}
+
+.side {
+    background-color: #0a2435;
+    width: 25%;
+    height: auto;
+    padding: 10px;
+    margin: 0;
+}
+
+.pacient {
+    color: white;
+    margin: 2rem auto;
+    font-size: 30px;
+}
+
+.pacient::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 0.1rem;
+    background-color: rgba(201, 233, 255, 0.75);
+    margin: auto;
+}
+
+.containerMain {
+    width: 75%;
+
+    head {
+        display: flex;
+        justify-content: end;
+        width: 100%;
+        height: 10%;
+    }
+
+}
+
+.patientRegister {
+    width: 90%;
+    margin: 2rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.insertPatient {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    width: 300px;
+    height: 50px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding: 12px;
+
+    .link {
+        color: white;
+    }
+}
+
+.me {
+    background-color: var(--white);
+    border: none;
+
+    .select {
+        background-color: var(--white);
+        border: none;
+    }
+
+    .select:before {
+        border: none;
+    }
+}
+
+.insertPatient:hover {
+    background-color: #277ab6;
+}
+
+.insertPatient:active {
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6), inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+.menu{
+    .menuItem{
+        color: var(--primary-color);
+        padding: 0px;
+        font-size: 1rem;
+        font-weight: bold;
+        justify-content: start;
+        font-family: Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    }
+}
+
+.patientBox {
+    width: 90%;
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    display: flex;
+    margin: 15px 0px;
+
+    .delete {
+        color: rgb(211, 11, 11);
+    }
+
+    .edit {
+        color: var(--primary-color);
+    }
+}
+.main{
+    width: 90%;
+    margin: 2rem;
+    
+    form{
+        margin: 1rem;
+    }
+}
+
+.buttonSave {
+    display: flex;
+    justify-content: center;
+    margin: 10px auto;
+}
+.save {
+    text-align: center;
+    background: #2B93DD;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    width: 334px;
+    height: 59px;
+    margin: 0px auto;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.save:hover {
+    background-color: #1a5682;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+.title{
+    color: var(--primary-color);
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+.inputBox{
+    Input{
+        width: 100%;
+        color: #0a2435;
+    }
+    Input:hover{
+        background-color: #cecece;
+    }
+}
+
+.section1 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: 48% 48%;
+    justify-content: space-between;
+    grid-gap: 30px;
+    gap: 30px;
+
+}
+
+.section2 {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 48% 48%;
+    justify-content: space-between;
+    grid-gap: 30px;
+    gap: 30px;
+}
+
+.section3 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
+    justify-content: space-between;
+    grid-gap: 30px;
+    gap: 30px;
+}
+
+.labelEmail::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 0.1rem;
+    background-color: rgba(43, 147, 221, 0.75);
+    margin: auto;
+}
+.Adress{
+    color: var(--primary-color);
+}
+.Adress::before{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 0.2rem;
+    background-color: rgba(43, 147, 221, 0.75);
+    margin: auto;
+}
