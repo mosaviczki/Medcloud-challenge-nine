@@ -21,16 +21,16 @@ const router = Router();
 router.post('/cadastro', new CreateUserController().handle);
 router.post('/login', new AuthUserController().handle);
 router.get('/YourAccount', isAuthenticated, new DetailUserController().handle);
-router.put('/YourAccount/update', isAuthenticated, new  UpdateUserController().handle);
-router.delete('/YourAccount/delete', isAuthenticated, new DeleteUserController().handle);
+router.put('/updateUser', isAuthenticated, new  UpdateUserController().handle);
+router.delete('/deleteUser', isAuthenticated, new DeleteUserController().handle);
 
 
 //Rotas de Patient
 router.post('/insert', isAuthenticated, new InsertPatientController().handle);
 router.get('/listAllPatients', isAuthenticated, new ListAllPatientsController().handle);
 router.get('/patient', isAuthenticated, new ListOnePatientController().handle);
-router.put('/patient', isAuthenticated, new  UpdatePatientController().handle);
-router.delete('/patient', isAuthenticated, new  DeletePatientController().handle);
+router.put('/patientUpdate', isAuthenticated, new  UpdatePatientController().handle);
+router.delete('/patientDelete', isAuthenticated, new  DeletePatientController().handle);
 
 
 export { router }
