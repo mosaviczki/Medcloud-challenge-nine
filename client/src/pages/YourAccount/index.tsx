@@ -3,7 +3,7 @@ import Image from 'next/image'
 import styles from './youraccount.module.scss'
 import logoImg from '../../../public/medcloud.svg'
 import Link from 'next/link'
-import { Avatar, Button, Select, MenuItem} from '@mui/material'
+import { Avatar, Button, Select, MenuItem, IconButton} from '@mui/material'
 import {Delete, Add, Edit} from '@mui/icons-material'
 import { useState, useContext } from 'react'
 import { canSSRAuth } from '../../utils/canSSRAuth'
@@ -69,26 +69,16 @@ export default function Insert(){
                         </Button>
                     </div>
                     <div className={styles.main}>
-                        <h1>MEUS DADOS</h1>
-                        <h2>
-                            Nome: {user?.name}
-                        </h2>
-                        <h2>
-                            Telefone: {user?.phone} 
-                            <Button variant='text' onClick={() => setOpenPhone(true)}>
-                                < Edit/> 
-                            </Button>
-                            
-                        </h2> 
-                        <h2>
-                            Email: {user?.email} 
-                            <Button variant='text' onClick={() => setOpenEmail(true)}>
-                                < Edit/> 
-                            </Button>
-                        </h2> 
-                        <Button variant='text' onClick={() => setOpenPassword(true)}>
-                            Trocar senha
-                        </Button>
+                        <div className={styles.headDate}>
+                            <h1>MEUS DADOS</h1>
+                            <IconButton>
+                                <Edit/>
+                            </IconButton>
+                        </div>
+                        
+                        <h2>Nome: {user?.name}</h2>
+                        <h2>Telefone: {user?.phone} </h2> 
+                        <h2>Email: {user?.email}</h2> 
                         <Button variant='contained' onClick={() => delUser(user?.iduser)}>
                             <Delete/> Excluir conta
                         </Button>
