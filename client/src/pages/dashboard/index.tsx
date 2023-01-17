@@ -44,6 +44,8 @@ export default function Dashboard({patients}: HomeProps){
                 idpatient: id,
             }
         })
+        const resp = await apiClient.get('/listAllPatients');
+        setPatientsList(resp.data)
         toast.success("Deletado")
     }
 

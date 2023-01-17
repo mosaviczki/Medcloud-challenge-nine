@@ -1,0 +1,188 @@
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+
+    *{
+        font-family: Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    }
+}
+
+.side {
+    background-color: #0a2435;
+    width: 25%;
+    height: 100%;
+    height: auto;
+    padding: 10px;
+    margin: 0;
+
+    .logo {
+        max-width: 80%;
+        width: auto;
+        height: auto;
+        
+    }
+
+    Link{
+        width: 70%;
+    }
+}
+
+.pacient {
+    color: white;
+    margin: 2rem auto;
+    font-size: 1.8rem;
+}
+@media (max-width: 720px) {
+    .pacient{
+        font-size: 1rem;
+    }
+    .main{
+        h1{
+            font-size: 1.5rem;
+        }
+        h2{
+            font-size: 0.9rem;
+        }
+    }
+
+}
+
+.pacient::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 0.1rem;
+    background-color: rgba(201, 233, 255, 0.75);
+    margin: auto;
+}
+
+.containerMain {
+    width: 75%;
+
+    .head {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        height: 10%;
+    }
+
+}
+
+.patientRegister {
+    width: 90%;
+    margin: 2rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.insertPatient {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    width: 300px;
+    height: 50px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding: 12px;
+
+    .link {
+        color: white;
+    }
+}
+
+.me {
+    background-color: var(--white);
+    border: none;
+    margin: 2rem;
+
+    .select {
+        background-color: var(--white);
+        border: none;
+    }
+
+    .select:before {
+        border: none;
+    }
+}
+
+.menu{
+    .menuItem{
+        color: var(--primary-color);
+        padding: 0px;
+        font-size: 1rem;
+        font-weight: bold;
+        justify-content: flex-start;
+        font-family: Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    }
+}
+
+.patientBox {
+    width: 90%;
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    display: flex;
+    margin: 15px 0px;
+
+    .delete {
+        color: rgb(211, 11, 11);
+    }
+
+    .edit {
+        color: var(--primary-color);
+    }
+}
+.main{
+    width: 90%;
+    margin: 2rem;
+    
+    h1{
+        color: var(--primary-color);
+        margin: 1rem;
+        font-size: 1.8rem;
+    }
+    h2{
+        margin: 1rem;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    form{
+        box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        text-align: center;
+
+        input{
+            width: 80%;
+            margin: 1rem auto;
+
+        }
+        button{
+            width: 30%;
+            margin: 1rem auto;
+        }
+    }
+}
+.save {
+    text-align: center;
+    background: #2B93DD;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    width: 334px;
+    height: 59px;
+    margin: 0px auto;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.save:hover {
+    background-color: #1a5682;
+}

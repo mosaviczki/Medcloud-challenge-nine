@@ -1,36 +1,47 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from './youraccount.module.scss'
+import styles from './updateUser.module.scss'
 import logoImg from '../../../public/medcloud.svg'
 import Link from 'next/link'
-import { Avatar, Button, Select, MenuItem, IconButton} from '@mui/material'
-import {Delete, Add, Edit} from '@mui/icons-material'
-import { useState, useContext } from 'react'
+import { Avatar, Select, MenuItem, Button} from '@mui/material'
+import { useState, useContext, FormEvent} from 'react'
 import { canSSRAuth } from '../../utils/canSSRAuth'
 import { AuthContext } from '../../contexts/AuthContext'
 import { setupAPIClient } from '../../services/api'
+import { Input } from '../../components/ui/Input'
 import { toast } from 'react-toastify'
 
-export default function YourAccount(){
+export default function UpdateUser(){
     const {user, signOut} = useContext(AuthContext)
+    const [phone, setPhone] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [confPassword, setConfPassword] = useState('')
     let letraIcon = user?.name[0]
 
-    async function delUser(iduser: string|undefined){
-        console.log(iduser)
-        const apiClient = setupAPIClient();
-        try{
-            await apiClient.delete('/deleteUser',{
-                params:{
-                    user_id: iduser,
+    async function updateUser(event: FormEvent) {
+        event.preventDefault();
+        if (password === confPassword){
+            if(phone === '' || email === '' || password === '' ||  confPassword === ''){
+                toast.warning("Preencha todos os campos!")
+            }else{
+                try{
+                    const apiUser = setupAPIClient()
+                    await apiUser.put('/updUser', {
+                        user_id: user?.iduser,
+                        phone: phone,
+                        email: email,
+                        password: password,
+                        confPassword: confPassword,
+                    })
+                    toast.success("Dados alterados!")
+                }catch(err){
+                    console.log(err)
                 }
-            })
-            toast.success("Deletado")
-            signOut()
-        }catch(err){
-            toast.error("Ops!")
-            console.log(err)
+            }
+        }else{
+            toast.error("As senhas devem ser iguais!")
         }
-        
     }
 
     return(
@@ -63,20 +74,17 @@ export default function YourAccount(){
                         </Button>
                     </div>
                     <div className={styles.main}>
-                        <div className={styles.headDate}>
-                            <h1>MEUS DADOS</h1>
-                            <IconButton>
-                                <Link href="/UpdateUser"><Edit/></Link>
-                            </IconButton>
-                        </div>
-                        
-                        <h2>Nome: {user?.name}</h2>
-                        <h2>Telefone: {user?.phone} </h2> 
-                        <h2>Email: {user?.email}</h2> 
-                        <Button variant='contained' onClick={() => delUser(user?.iduser)}>
-                            <Delete/> Excluir conta
-                        </Button>
-                        
+                        <form onSubmit={updateUser}>
+                            <h1>ALTERAR DADOS</h1>
+                            <Input type="number" placeholder= "Telefone" value={phone} onChange = {(e)=> setPhone(e.target.value)}/>
+                            <Input type="text" placeholder= "Email" value={email} onChange = {(e)=> setEmail(e.target.value)}/>
+                            <Input type="password" placeholder="Senha" value={password} onChange = {(e)=> setPassword(e.target.value)}/>
+                            <Input type="password" placeholder="Confirmar senha" value={confPassword} onChange = {(e)=> setConfPassword(e.target.value)}/>
+                
+                            <button className={styles.save}
+                                type='submit'
+                            >Enviar</button>
+                        </form>
                     </div>
                 </div>
             </div>

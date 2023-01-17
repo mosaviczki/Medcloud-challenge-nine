@@ -11,6 +11,7 @@ interface IdForUpdate{
 
 class UpdateUser{
     async execute({user_id, phone, email, password, confPassword}: IdForUpdate){
+
         //verificando se enviou email
         if(!email){
             throw new Error("Insira um email")
@@ -29,7 +30,6 @@ class UpdateUser{
         if (password != confPassword){
             throw new Error("As senhas devem ser iguais!")
         }
-
         const passwordHash = await hash(password, 8)
         
         const updateUser = await prismaClient.user.update({
