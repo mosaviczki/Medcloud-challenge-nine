@@ -10,6 +10,7 @@ class ListAllPatients{
                 user_id: userid
             },
             select:{
+                idpatient: true,
                 name: true,
                 birth: true,
                 email: true,
@@ -17,7 +18,7 @@ class ListAllPatients{
                 numberAdress: true,
                 district:true,
                 complement:true,
-                //zipcode:true,
+                zipcode:true,
                 city :true,
                 uf:true
             }

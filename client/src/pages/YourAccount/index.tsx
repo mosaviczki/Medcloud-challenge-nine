@@ -9,17 +9,17 @@ import { useState, useContext } from 'react'
 import { canSSRAuth } from '../../utils/canSSRAuth'
 import { AuthContext } from '../../contexts/AuthContext'
 import { Input } from '../../components/ui/Input'
-import { NewPassword, NewPhone, NewEmail } from '../dialog/updateUser'
+import { NewPassword, NewPhone, NewEmail, DeleteUser } from '../dialog/updateUser'
 
 export default function Insert(){
     const {user, signOut} = useContext(AuthContext)
     const [openPhone, setOpenPhone] = useState(false);
     const [openEmail, setOpenEmail] = useState(false);
     const [openPassword,setOpenPassword] = useState(false);
+    const [openDelete,setOpenDelete] = useState(false);
+    
     
     let letraIcon = user?.name[0]
-
-
 
     return(
         <>
@@ -29,30 +29,27 @@ export default function Insert(){
             </Head>
             <div className={styles.container}>
                 <div className={styles.side}>
-                    <Image className={styles.logo} src={logoImg} alt='logo'/>
+                    <Image priority={true} className={styles.logo} src={logoImg} alt='logo'/>
                     <Link className={styles.pacient} href="/dashboard">Pacientes</Link>
                 </div>
                 <div className={styles.containerMain}>
-                    <head>
+                    <div className={styles.head}>
                         <Button className={styles.me} variant="text" startIcon={<Avatar>{letraIcon}</Avatar>}>
                             <Select
                                 className={styles.select}
                                 variant="filled"
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                //onChange={handleChange}
                             >
-                                <MenuItem className={styles.menu} value={20}>
+                                <MenuItem className={styles.menu}>
                                     <Link  className={styles.menuItem} href="/YourAccount">MEUS DADOS</Link> 
                                 </MenuItem>
-                                <MenuItem className={styles.menu} value={30}>
+                                <MenuItem className={styles.menu}>
                                     <Button className={styles.menuItem} variant='text' onClick={signOut}>
                                         SAIR
                                     </Button>
                                 </MenuItem>
                             </Select>
                         </Button>
-                    </head>
+                    </div>
                     <div className={styles.main}>
                         <h1>MEUS DADOS</h1>
                         <h2>
@@ -74,9 +71,13 @@ export default function Insert(){
                         <Button variant='text' onClick={() => setOpenPassword(true)}>
                             Trocar senha
                         </Button>
+                        <Button variant='contained' onClick={() => setOpenDelete(true)}>
+                            Excluir conta
+                        </Button>
                         <NewPhone open={openPhone} setOpen={setOpenPhone}/>
                         <NewEmail open={openEmail} setOpen={setOpenEmail}/>
                         <NewPassword open={openPassword} setOpen={setOpenPassword}/>
+                        <DeleteUser open={openDelete} setOpen={setOpenDelete}/>
                         
                     </div>
                 </div>

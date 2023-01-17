@@ -1,18 +1,19 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import styles from './insert.module.scss'
 import logoImg from '../../../public/medcloud.svg'
-import Link from 'next/link'
+import { setupAPIClient } from '../../services/api'
+
 import { Avatar, Button, Select, MenuItem} from '@mui/material'
-import {Delete, Edit} from '@mui/icons-material'
-import { useState, useContext } from 'react'
+import { useState, FormEvent, useContext} from 'react'
 import { canSSRAuth } from '../../utils/canSSRAuth'
 import { AuthContext } from '../../contexts/AuthContext'
 import { Input } from '../../components/ui/Input'
+import { toast } from 'react-toastify'
 
 export default function Insert(){
     const {user, signOut} = useContext(AuthContext)
-    let letraIcon = user?.name[0]
     const [name, setName] = useState("");
     const [birth, setBirth] = useState("");
     const [phone, setPhone] = useState("");
@@ -20,13 +21,59 @@ export default function Insert(){
     const [rg, setRg] = useState("");
     const [email, setEmail] = useState("");
     const [adress, setAdress] = useState("");
-    const [numberAdress, setNumberAdress] = useState(0);
+    const [numberAdress, setNumberAdress] = useState("");
     const [district, setDistrict] = useState("");
     const [complement, setComplement] = useState("");
     const [zipcode, setZipcode] = useState("");
     const [city, setCity] = useState("");
     const [uf, setUf] = useState("");
     const [loading, setLoading] = useState(false);
+    let letraIcon = user?.name[0]
+    let userId = user?.iduser
+
+    let asterisk = "*"
+
+    
+
+     async function handleRegister(event: FormEvent) {
+        event.preventDefault();
+        console.log(birth)
+        console.log(userId)
+        try{
+            if (name === '' || phone === '' || birth === '' || cpf === '' ||rg === '' ||email === '' ||adress === '' || numberAdress === '' || district === '' ||zipcode === '' ||city === '' ||uf === '' ){
+                toast.error("Preencha todos os campos!")
+                return;
+            }
+
+            const apiClient = setupAPIClient();
+            await apiClient.post('/insert',{
+                name: name,  
+                birth: birth, 
+                phone: phone, 
+                cpf: cpf, 
+                rg: rg, 
+                email: email, 
+                adress: adress, 
+                numberAdress: numberAdress, 
+                district: district, 
+                complement: complement, 
+                zipcode: zipcode, 
+                city: city, 
+                uf: uf, 
+                user_id: userId
+            })
+            
+
+        }catch(err){
+            toast.error("Ops, erro ao cadastrar!")
+            return;
+        }
+        
+
+        toast.success('Cliente cadastrado com sucesso')
+
+
+    } 
 
     return(
         <>
@@ -36,70 +83,68 @@ export default function Insert(){
             </Head>
             <div className={styles.container}>
                 <div className={styles.side}>
-                    <Image className={styles.logo} src={logoImg} alt='logo'/>
+                    <Image priority={true} className={styles.logo} src={logoImg} alt='logo'/>
                     <Link className={styles.pacient} href="/dashboard">Pacientes</Link>
                 </div>
                 <div className={styles.containerMain}>
-                    <head>
+                    <div className={styles.head}>
                         <Button className={styles.me} variant="text" startIcon={<Avatar>{letraIcon}</Avatar>}>
                             <Select
                                 className={styles.select}
                                 variant="filled"
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                //onChange={handleChange}
                             >
-                                <MenuItem className={styles.menu} value={20}>
+                                <MenuItem className={styles.menu}>
                                     <Link  className={styles.menuItem} href="/YourAccount">MEUS DADOS</Link> 
                                 </MenuItem>
-                                <MenuItem className={styles.menu} value={30}>
+                                <MenuItem className={styles.menu}>
                                     <Button className={styles.menuItem} variant='text' onClick={signOut}>
                                         SAIR
                                     </Button>
                                 </MenuItem>
                             </Select>
                         </Button>
-                    </head>
+                    </div>
                     <div className={styles.main}>
-                        <form className={styles.form}>
+                        <form className={styles.form} onSubmit={handleRegister}>
                             <h1 className={styles.title}>DADOS PESSOAIS</h1>
-                            <div className={styles.inputGroup}>
+                            <div className={styles.inputGroup}>                    
                                 <div className={styles.inputBox}>
                                     <label >
-                                        Nome
+                                        Nome {asterisk}
                                         <Input type="text" value={name} onChange={(e)=> setName(e.target.value)}/>
                                     </label>
                                 </div>
                                 <div className={styles.section1}>
-                                    
-                                <div className={styles.inputBox}>
+                                    <div className={styles.inputBox}>
                                         <label>
-                                            Data de nascimento
-                                            <Input type="date" value={birth} onChange = {(e)=> setBirth(e.target.value)}/>
+                                            Data de nascimento {asterisk}
+                                            <Input type="text" value={birth} onChange = {(e)=> setBirth(e.target.value)}/>
                                         </label>
                                     </div>
                                     <div className={styles.inputBox}>
                                         <label>
-                                            Telefone
+                                            Telefone {asterisk}
                                             <Input type="number" value={phone} onChange = {(e)=> setPhone(e.target.value)}/>
                                         </label>
                                     </div>
                                     <div className={styles.inputBox}>
                                         <label>
-                                            CPF
+                                            CPF {asterisk}
                                             <Input type="number" value={cpf} onChange = {(e)=> setCpf(e.target.value)}/>
                                         </label>
                                     </div>
                                     <div className={styles.inputBox}>
                                         <label>
-                                            RG
+                                            RG {asterisk}
                                             <Input type="number" value={rg} onChange = {(e)=> setRg(e.target.value)}/>
                                         </label>
                                     </div>
                                 </div>
                                 <div className={styles.inputBox}>
                                     <label>
-                                        Email
+                                        Email {asterisk}
                                     <Input type="text" placeholder= "Email" value={email} onChange = {(e)=> setEmail(e.target.value)}/>
                                     </label>
                                 </div>    
@@ -107,51 +152,52 @@ export default function Insert(){
                                 <div className={styles.section2}>
                                     <div className={styles.inputBox}>
                                         <label>
-                                            Logradouro
-                                            <Input type="text" value={adress} onChange = {(e)=> setAdress(e.target.value)}/>
-                                        </label>
-                                    </div>
-                                    <div className={styles.inputBox}>
-                                        <label>
-                                            Numero
-                                            <Input type="number" value={numberAdress} onChange = {(e)=> setNumberAdress(e.target.value)}/>
-                                        </label>
-                                    </div>
-                                    <div className={styles.inputBox}>
-                                        <label>
-                                            Bairro
-                                            <Input type="text" value={district} onChange = {(e)=> setDistrict(e.target.value)}/>
-                                        </label>
-                                    </div>
-                                    <div className={styles.inputBox}>
-                                        <label>
-                                            Complemento 
-                                            <Input type="text" value={complement} onChange = {(e)=> setComplement(e.target.value)}/>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className={styles.section3}>
-                                    <div className={styles.inputBox}>
-                                        <label>
-                                            CEP
+                                            CEP {asterisk}
                                             <Input type="number"  value={zipcode} onChange = {(e)=> setZipcode(e.target.value)}/>
                                         </label>
                                     </div>
                                     <div className={styles.inputBox}>
                                         <label>
-                                            Cidade
+                                            Logradouro {asterisk}
+                                            <Input type="text" value={adress} onChange = {(e)=> setAdress(e.target.value)}/>
+                                        </label>
+                                    </div>
+                                    <div className={styles.inputBox}>
+                                        <label>
+                                            Numero {asterisk}
+                                            <Input type="number" name={'numberAdress'} value={numberAdress} onChange = {(e)=> setNumberAdress(e.target.value)}/>
+                                        </label>
+                                    </div>
+                                    <div className={styles.inputBox}>
+                                        <label>
+                                            Bairro {asterisk}
+                                            <Input type="text" value={district} onChange = {(e)=> setDistrict(e.target.value)}/>
+                                        </label>
+                                    </div>
+                                    
+                                </div>
+                                <div className={styles.section3}>
+                                    <div className={styles.inputBox}>
+                                        <label>
+                                            Complemento 
+                                            <Input type="text" value={complement} onChange={(e)=> setComplement(e.target.value)}/>
+                                        </label>
+                                    </div>
+                                    <div className={styles.inputBox}>
+                                        <label>
+                                            Cidade {asterisk}
                                             <Input type="text" value={city} onChange = {(e)=> setCity(e.target.value)}/>
                                         </label>
                                     </div>
                                     <div className={styles.inputBox}>
                                         <label>
-                                            UF
+                                            UF {asterisk}
                                             <Input type="UF" placeholder= "" value={uf} onChange = {(e)=> setUf(e.target.value)}/>
                                         </label>
                                     </div>
                                 </div>
                                 <div className={styles.buttonSave}>
-                                    <button className={styles.save}>SALVAR</button>
+                                    <button className={styles.save} /* onClick={handleRegister} */>SALVAR</button>
                                 </div>  
                             </div>
                         </form>
@@ -163,6 +209,7 @@ export default function Insert(){
 }
 
 export const getServerSideProps = canSSRAuth(async(ctx) =>{
+
     return{
         props:{}
     }

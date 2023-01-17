@@ -52,7 +52,7 @@ export default function SignUp() {
 
       <div className={styles.container}>
         <div className={styles.containerSide}>
-          <Image src={logoImg} alt='logo' width={280}/>
+          <Image priority={true} src={logoImg} alt='logo' width={280}/>
         </div>
         <div className={styles.login}>
           <div className={styles.boxInput}>

@@ -1,5 +1,4 @@
 import {Router, Request, Response } from 'express';
-import multer from "multer";
 
 import { CreateUserController } from './controllers/user/CreateUserController';
 import { AuthUserController } from './controllers/user/AuthUserController';
@@ -14,11 +13,9 @@ import { ListAllPatientsController } from './controllers/patient/ListAllPatients
 import { ListOnePatientController } from './controllers/patient/ListOnePatientController';
 import { UpdatePatientController } from './controllers/patient/UpdatePatientController';
 import { DeletePatientController } from './controllers/patient/DeletePatientController';
-import uploadConfig from './config/multer';
 
 const router = Router();
 
-const upload = multer(uploadConfig.upload("./img"))
 
 //Rotas de User
 router.post('/cadastro', new CreateUserController().handle);
@@ -29,11 +26,11 @@ router.delete('/YourAccount/delete', isAuthenticated, new DeleteUserController()
 
 
 //Rotas de Patient
-router.post('/insert', isAuthenticated, /* upload.single('file'), */ new InsertPatientController().handle);
-router.get('/dashboard', isAuthenticated, new ListAllPatientsController().handle);
-router.get('/patient/data', isAuthenticated, new ListOnePatientController().handle);
-router.put('/patient/update', isAuthenticated, new  UpdatePatientController().handle);
-router.delete('/patient/delete', isAuthenticated, new  DeletePatientController().handle);
+router.post('/insert', isAuthenticated, new InsertPatientController().handle);
+router.get('/listAllPatients', isAuthenticated, new ListAllPatientsController().handle);
+router.get('/patient', isAuthenticated, new ListOnePatientController().handle);
+router.put('/patient', isAuthenticated, new  UpdatePatientController().handle);
+router.delete('/patient', isAuthenticated, new  DeletePatientController().handle);
 
 
 export { router }

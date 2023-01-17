@@ -18,7 +18,7 @@ class ListOnePatient{
                 numberAdress: true,
                 district:true,
                 complement:true,
-                //zipcode:true,
+                zipcode:true,
                 city :true,
                 uf:true
             }

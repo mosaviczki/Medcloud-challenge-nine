@@ -5,7 +5,7 @@ interface IdForUpdate{
   phone: string;
   email: string;
   adress: string;
-  numberAdress: number;
+  numberAdress: string;
   district: string;
   complement: string;
   zipcode: string;

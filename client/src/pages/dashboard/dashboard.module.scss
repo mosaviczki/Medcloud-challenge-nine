@@ -38,9 +38,9 @@
 .containerMain {
     width: 75%;
 
-    head {
+    .head {
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
         width: 100%;
         height: 10%;
     }
@@ -100,7 +100,7 @@
         padding: 0px;
         font-size: 1rem;
         font-weight: bold;
-        justify-content: start;
+        justify-content: flex-start;
         font-family: Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
     }
 }
@@ -132,4 +132,36 @@
         font-weight: bold;
         color: var(--white);
     }
+}
+
+.patientList{
+    width: 100%;
+    margin: 2rem auto;
+    Button{
+        width: 100%;
+        box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: start;
+        margin: auto 0px;
+        color: #0a2435;
+
+        a{
+            width: 100%;
+            padding: 1rem;
+
+            h1{
+                font-size: 1.5rem;
+                text-align: center;
+            }
+            p{
+                width: 100%;
+                display: flex;
+                justify-content: flex-start;
+            }
+        }
+        
+    } 
 }

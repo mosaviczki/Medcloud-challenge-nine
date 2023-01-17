@@ -14,7 +14,6 @@ datasource db {
 model User{
   iduser      String        @id @default(uuid())
   name        String
-  image       String?
   phone       String
   email       String
   password    String
@@ -26,14 +25,13 @@ model User{
 model Patient {
   idpatient    String       @id @default(uuid())
   name         String
-  image        String?
   birth        DateTime
   phone        String
   cpf          String
   rg           String
   email        String
   adress       String
-  numberAdress Int
+  numberAdress String
   district     String
   complement   String?
   zipcode      String

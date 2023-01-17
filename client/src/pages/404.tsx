@@ -13,7 +13,7 @@ export default function Erro() {
                 <link rel="icon" href="/cloud.png" />
             </Head>
             <div className={styles.content}>
-                <img src='/imageError.svg' width={400}/>
+                <img priority={true} src='/imageError.svg' width={400}/>
                 <h1>OPS! NÃO ENCONTRAMOS ESSA PÁGINA</h1>
                 <Link href='/' className={styles.buttonInitial}>VOLTAR AO INICIO</Link>
             </div>

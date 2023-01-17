@@ -12,7 +12,7 @@ type AuthContextData = {
     signUp: (credential: SignUpProps)=> Promise<void>
 }
 type UserProps = {
-    id: string;
+    iduser: string;
     phone: string;
     name: string;
     email:string;
@@ -56,10 +56,10 @@ export function AuthProvider({children}: AuthProviderProps){
 
         if(token){
             api.get('/YourAccount').then(response =>{
-                const {id, name, phone, email} = response.data;
+                const {iduser, name, phone, email} = response.data;
 
                 setUser({
-                    id, name, phone, email
+                    iduser, name, phone, email
                 })
             })
             .catch(() => {
@@ -74,7 +74,7 @@ export function AuthProvider({children}: AuthProviderProps){
                 email,
                 password
             })
-            const {id, name, phone, token} = response.data;
+            const {iduser, name, phone, token} = response.data;
 
             setCookie(undefined, '@medcloud.token', token,{
                 maxAge: 60*60*24*30,  //expira 1 mes
@@ -82,7 +82,7 @@ export function AuthProvider({children}: AuthProviderProps){
             })
 
             setUser({
-                id,
+                iduser,
                 name,
                 phone,
                 email
@@ -109,6 +109,8 @@ export function AuthProvider({children}: AuthProviderProps){
             toast.error("Erro ao cadastrar")
         }
     }
+
+
 
     return(
         <AuthContext.Provider value={{user, isAuthenticated, signIn, signOut, signUp}}>

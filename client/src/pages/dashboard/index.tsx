@@ -5,27 +5,56 @@ import logoImg from '../../../public/medcloud.svg'
 import Link from 'next/link'
 import { Avatar, IconButton, Button, Select, MenuItem} from '@mui/material'
 import {Delete, Add, Edit} from '@mui/icons-material'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { canSSRAuth } from '../../utils/canSSRAuth'
 import { AuthContext } from '../../contexts/AuthContext'
+import { setupAPIClient } from '../../services/api'
 
-export default function Dashboard(){
+type PatientsProps ={
+    idpatient: string;
+    name: string;
+    birth: string;
+    email: string;
+    adress: string;
+    numberAdress: string;
+    district:string;
+    complement:string | null;
+    zipcode: string;
+    city : string;
+    uf: string;
+}
+
+interface HomeProps{
+    patients: PatientsProps[];
+}
+
+export default function Dashboard({patients}: HomeProps){
+    const [patientsList, setPatientsList] = useState(patients || [])
     const {user, signOut} = useContext(AuthContext)
     let letraIcon = user?.name[0]
+
+    function handleDate(date: string) {
+        const newData = Intl.DateTimeFormat("pt-BR", {
+            dateStyle: "short",
+        })
+
+        let data = newData.format(date)
+    }
 
     return(
         <>
             <Head>
                 <title>Medcloud</title>
-                <link rel="icon" href="/cloud.png"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <link rel="icon" href="/cloud.png" />
             </Head>
             <div className={styles.container}>
                 <div className={styles.side}>
-                    <Image className={styles.logo} src={logoImg} alt='logo'/>
+                    <Image priority={true} className={styles.logo} src={logoImg} alt='logo'/>
                     <Link className={styles.pacient} href="/dashboard">Pacientes</Link>
                 </div>
                 <div className={styles.containerMain}>
-                    <head>
+                    <div className={styles.head}>
                         <Button className={styles.me} variant="text" startIcon={<Avatar>{letraIcon}</Avatar>}>
                             <Select
                                 className={styles.select}
@@ -34,21 +63,37 @@ export default function Dashboard(){
                                 id="demo-simple-select"
                                 //onChange={handleChange}
                             >
-                                <MenuItem className={styles.menu} value={20}>
+                                <MenuItem className={styles.menu}>
                                     <Link  className={styles.menuItem} href="/YourAccount">MEUS DADOS</Link> 
                                 </MenuItem>
-                                <MenuItem className={styles.menu} value={30}>
+                                <MenuItem className={styles.menu}>
                                     <Button className={styles.menuItem} variant='text' onClick={signOut}>
                                         SAIR
                                     </Button>
                                 </MenuItem>
                             </Select>
                         </Button>
-                    </head>
+                    </div>
                     <main className={styles.main}>
-                        <Button className={styles.buttonInsert} variant="contained" startIcon={<Add/>}>
+                        <Button className={styles.buttonInsert} variant="contained">
+                            <Add/>
                             <Link className={styles.link} href="/insert">INSERIR NOVO PACIENTE</Link>
                         </Button>
+                        {patientsList.map( item => (
+                            <section key={item.idpatient} className={styles.patientList}>
+                                <Button>
+                                    <Link href="/patient">
+                                        <h1>{item.name}</h1>
+                                        <p className={styles.p}>Data de nascimento: {item.birth.slice(0,10)}</p>
+                                        <p>Email: {item.email}</p>
+                                        <p>
+                                            Endereço: {item.adress}, {item.numberAdress} - {item.district} {item.complement}, {item.city} - {item.uf}, {item.zipcode}
+                                        </p>
+                                    </Link>
+                                    
+                                </Button>
+                            </section>
+                        ))}
                     </main>
                 </div>
             </div>
@@ -57,7 +102,12 @@ export default function Dashboard(){
 }
 
 export const getServerSideProps = canSSRAuth(async(ctx) =>{
+    const apiClient = setupAPIClient(ctx);
+
+    const response = await apiClient.get('/listAllPatients')
     return{
-        props:{}
+        props:{
+            patients: response.data
+        } 
     }
 })
