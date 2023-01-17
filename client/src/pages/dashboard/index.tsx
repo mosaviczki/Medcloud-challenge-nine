@@ -36,18 +36,6 @@ export default function Dashboard({patients}: HomeProps){
     const [ open, setOpen]  = useState(false)
     let letraIcon = user?.name[0]
 
-    async function handleClose(){
-        setOpen(false)
-    }
-
-    async function handleOpen(id: string){
-        const apiClient = setupAPIClient();
-        //const response = await apiClient.delete('/deletePatient')
-        
-    }
-
-
-
     async function deletePatient(id: string){
         const apiClient = setupAPIClient();
         alert(id)
@@ -56,12 +44,8 @@ export default function Dashboard({patients}: HomeProps){
                 idpatient: id,
             }
         })
-
         toast.success("Deletado")
-        
     }
-
-
 
     return(
         <>

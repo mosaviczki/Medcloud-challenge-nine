@@ -10,16 +10,34 @@ import { canSSRAuth } from '../../utils/canSSRAuth'
 import { AuthContext } from '../../contexts/AuthContext'
 import { Input } from '../../components/ui/Input'
 import { NewPassword, NewPhone, NewEmail, DeleteUser } from '../dialog/updateUser'
+import { setupAPIClient } from '../../services/api'
+import { toast } from 'react-toastify'
 
 export default function Insert(){
-    const {user, signOut} = useContext(AuthContext)
+    const {user, signOut, deleteUser} = useContext(AuthContext)
     const [openPhone, setOpenPhone] = useState(false);
     const [openEmail, setOpenEmail] = useState(false);
     const [openPassword,setOpenPassword] = useState(false);
     const [openDelete,setOpenDelete] = useState(false);
-    
-    
     let letraIcon = user?.name[0]
+
+    async function delUser(iduser: string|undefined){
+        console.log(iduser)
+        const apiClient = setupAPIClient();
+        try{
+            await apiClient.delete('/deleteUser',{
+                params:{
+                    user_id: iduser,
+                }
+            })
+            toast.success("Deletado")
+            signOut()
+        }catch(err){
+            toast.error("Ops!")
+            console.log(err)
+        }
+        
+    }
 
     return(
         <>
@@ -71,8 +89,8 @@ export default function Insert(){
                         <Button variant='text' onClick={() => setOpenPassword(true)}>
                             Trocar senha
                         </Button>
-                        <Button variant='contained' onClick={() => setOpenDelete(true)}>
-                            Excluir conta
+                        <Button variant='contained' onClick={() => delUser(user?.iduser)}>
+                            <Delete/> Excluir conta
                         </Button>
                         <NewPhone open={openPhone} setOpen={setOpenPhone}/>
                         <NewEmail open={openEmail} setOpen={setOpenEmail}/>

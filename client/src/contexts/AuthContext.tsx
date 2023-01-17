@@ -9,7 +9,7 @@ type AuthContextData = {
     isAuthenticated: boolean;
     signIn:(credential: SignInProps)=> Promise<void>;
     signOut: () => void;
-    signUp: (credential: SignUpProps)=> Promise<void>
+    signUp: (credential: SignUpProps)=> Promise<void>;
 }
 type UserProps = {
     iduser: string;
@@ -109,9 +109,6 @@ export function AuthProvider({children}: AuthProviderProps){
             toast.error("Erro ao cadastrar")
         }
     }
-
-
-
     return(
         <AuthContext.Provider value={{user, isAuthenticated, signIn, signOut, signUp}}>
             {children}
