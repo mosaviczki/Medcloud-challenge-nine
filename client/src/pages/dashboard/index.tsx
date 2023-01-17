@@ -88,6 +88,7 @@ export default function Dashboard({patients}: HomeProps){
                         {patientsList.map( item => (
                             <section key={item.idpatient} className={styles.patientList}>
                                 <Button>
+                                    <Link href={`/patient/${item.idpatient}`}>Teste</Link>
                                     <div className={styles.headPatient}>
                                         <h1>{item.name}</h1>
                                         <IconButton className={styles.delIcon} onClick={() => deletePatient(item.idpatient)}/*onClick={() => setOpen(false)}*/>
