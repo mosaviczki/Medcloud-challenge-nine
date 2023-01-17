@@ -23,6 +23,7 @@ type PatientsProps ={
     zipcode: string;
     city : string;
     uf: string;
+    user_id: string
 }
 
 interface HomeProps{
@@ -30,9 +31,23 @@ interface HomeProps{
 }
 
 export default function Dashboard({patients}: HomeProps){
+    const apiClient = setupAPIClient();
+    const [patList, setPatList] = useState(patients || [])
     const [patientsList, setPatientsList] = useState(patients || [])
     const {user, signOut} = useContext(AuthContext)
     let letraIcon = user?.name[0]
+
+
+    async function detPatient(id: string) {
+        const resp = await apiClient.get('/listAllPatients', {
+            params:{
+                user_id: user?.iduser,
+            }
+        });
+        setPatList(resp.data)
+    }
+
+
 
     async function deletePatient(id: string){
         const apiClient = setupAPIClient();
@@ -85,7 +100,7 @@ export default function Dashboard({patients}: HomeProps){
                             <Add/>
                             <Link className={styles.link} href="/insert">INSERIR NOVO PACIENTE</Link>
                         </Button>
-                        {patientsList.map( item => (
+                        {patList.map( item => (
                             <section key={item.idpatient} className={styles.patientList}>
                                 <Button>
                                     <Link href={`/patient/${item.idpatient}`}>Teste</Link>
@@ -105,6 +120,7 @@ export default function Dashboard({patients}: HomeProps){
                                 </Button>
                             </section>
                         ))}
+                        
                     </main>
                 </div>
             </div>
@@ -113,7 +129,6 @@ export default function Dashboard({patients}: HomeProps){
 }
 export const getServerSideProps = canSSRAuth(async(ctx) =>{
     const apiClient = setupAPIClient(ctx);
-
     const response = await apiClient.get('/listAllPatients')
     return{
         props:{

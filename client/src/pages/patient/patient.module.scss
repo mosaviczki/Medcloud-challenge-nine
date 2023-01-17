@@ -1,0 +1,159 @@
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    *{
+        font-family: Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    }
+    
+    .logo {
+        width: 70%;
+    }
+}
+
+.side {
+    background-color: #0a2435;
+    width: 25%;
+    padding: 10px;
+}
+.sideP{
+    background-color: #0a2435;
+    width: 25%;
+    height: 100vh;
+    padding: 10px;
+}
+
+.pacient {
+    color: white;
+    margin: 2rem auto;
+    font-size: 30px;
+}
+
+.pacient::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 0.1rem;
+    background-color: rgba(201, 233, 255, 0.75);
+    margin: auto;
+}
+
+.containerMain {
+    width: 75%;
+    height: 100%;
+
+    .head {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        height: 10%;
+    }
+
+}
+
+.patientRegister {
+    width: 90%;
+    margin: 2rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.me {
+    background-color: var(--white);
+    border: none;
+
+    .select {
+        background-color: var(--white);
+        border: none;
+    }
+
+    .select:before {
+        border: none;
+    }
+}
+.menu{
+    .menuItem{
+        color: var(--primary-color);
+        padding: 0px;
+        font-size: 1rem;
+        font-weight: bold;
+        justify-content: flex-start;
+        font-family: Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    }
+}
+
+.insertPatient {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    width: 300px;
+    height: 50px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding: 12px;
+
+    .link {
+        color: white;
+    }
+}
+.insertPatient:hover {
+    background-color: #277ab6;
+}
+
+.insertPatient:active {
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6), inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+.main{
+    width: 90%;
+    margin: 2rem;
+
+    .buttonInsert{
+        height: 3rem;
+    }
+    .link{
+        font-size: 1rem;
+        font-weight: bold;
+        color: var(--white);
+    }
+
+    form{
+        box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        text-align: center;
+
+        input{
+            width: 80%;
+            margin: 1rem auto;
+
+        }
+        button{
+            width: 30%;
+            margin: 1rem auto;
+        }
+    }
+}
+.save {
+    text-align: center;
+    background: #2B93DD;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    width: 334px;
+    height: 59px;
+    margin: 0px auto;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.save:hover {
+    background-color: #1a5682;
+}
