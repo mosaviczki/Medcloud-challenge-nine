@@ -9,6 +9,8 @@ import { useContext, useState } from 'react'
 import { canSSRAuth } from '../../utils/canSSRAuth'
 import { AuthContext } from '../../contexts/AuthContext'
 import { setupAPIClient } from '../../services/api'
+import { DeletePatient } from '../dialog/Patient'
+import { toast } from 'react-toastify'
 
 type PatientsProps ={
     idpatient: string;
@@ -31,15 +33,35 @@ interface HomeProps{
 export default function Dashboard({patients}: HomeProps){
     const [patientsList, setPatientsList] = useState(patients || [])
     const {user, signOut} = useContext(AuthContext)
+    const [ open, setOpen]  = useState(false)
     let letraIcon = user?.name[0]
 
-    function handleDate(date: string) {
-        const newData = Intl.DateTimeFormat("pt-BR", {
-            dateStyle: "short",
+    async function handleClose(){
+        setOpen(false)
+    }
+
+    async function handleOpen(id: string){
+        const apiClient = setupAPIClient();
+        //const response = await apiClient.delete('/deletePatient')
+        
+    }
+
+
+
+    async function deletePatient(id: string){
+        const apiClient = setupAPIClient();
+        alert(id)
+        const response = await apiClient.delete('/patientDelete',{
+            params:{
+                idpatient: id,
+            }
         })
 
-        let data = newData.format(date)
+        toast.success("Deletado")
+        
     }
+
+
 
     return(
         <>
@@ -82,15 +104,19 @@ export default function Dashboard({patients}: HomeProps){
                         {patientsList.map( item => (
                             <section key={item.idpatient} className={styles.patientList}>
                                 <Button>
-                                    <Link href="/patient">
+                                    <div className={styles.headPatient}>
                                         <h1>{item.name}</h1>
+                                        <IconButton className={styles.delIcon} onClick={() => deletePatient(item.idpatient)}/*onClick={() => setOpen(false)}*/>
+                                            <Delete/>
+                                        </IconButton>
+                                    </div>
+                                    <div className={styles.contentPatient}>
                                         <p className={styles.p}>Data de nascimento: {item.birth.slice(0,10)}</p>
                                         <p>Email: {item.email}</p>
                                         <p>
                                             Endereço: {item.adress}, {item.numberAdress} - {item.district} {item.complement}, {item.city} - {item.uf}, {item.zipcode}
                                         </p>
-                                    </Link>
-                                    
+                                    </div>
                                 </Button>
                             </section>
                         ))}
@@ -100,7 +126,11 @@ export default function Dashboard({patients}: HomeProps){
         </>
     )
 }
-
+                                /*<DeletePatient
+                                    open={open}
+                                    setOpen={setOpen}
+                                    id = {item.idpatient}
+                                />*/
 export const getServerSideProps = canSSRAuth(async(ctx) =>{
     const apiClient = setupAPIClient(ctx);
 
