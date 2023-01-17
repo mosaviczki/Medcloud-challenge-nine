@@ -10,7 +10,6 @@ import Link from 'next/link'
 import { FormEvent, useContext, useState } from 'react'
 import { AuthContext } from '../contexts/AuthContext'
 import { toast } from 'react-toastify'
-import { on } from 'events'
 
 export default function Home() {
   const {signIn} = useContext(AuthContext)

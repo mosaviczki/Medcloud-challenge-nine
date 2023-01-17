@@ -70,31 +70,6 @@
 
 }
 
-.patientRegister {
-    width: 90%;
-    margin: 2rem;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-}
-
-.insertPatient {
-    background-color: var(--primary-color);
-    border: none;
-    border-radius: 5px;
-    width: 300px;
-    height: 50px;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    padding: 12px;
-
-    .link {
-        color: white;
-    }
-}
-
 .me {
     background-color: var(--white);
     border: none;

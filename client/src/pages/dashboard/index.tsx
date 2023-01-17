@@ -4,12 +4,11 @@ import styles from './dashboard.module.scss'
 import logoImg from '../../../public/medcloud.svg'
 import Link from 'next/link'
 import { Avatar, IconButton, Button, Select, MenuItem} from '@mui/material'
-import {Delete, Add, Edit} from '@mui/icons-material'
+import {Delete, Add} from '@mui/icons-material'
 import { useContext, useState } from 'react'
 import { canSSRAuth } from '../../utils/canSSRAuth'
 import { AuthContext } from '../../contexts/AuthContext'
 import { setupAPIClient } from '../../services/api'
-import { DeletePatient } from '../dialog/Patient'
 import { toast } from 'react-toastify'
 
 type PatientsProps ={
@@ -33,7 +32,6 @@ interface HomeProps{
 export default function Dashboard({patients}: HomeProps){
     const [patientsList, setPatientsList] = useState(patients || [])
     const {user, signOut} = useContext(AuthContext)
-    const [ open, setOpen]  = useState(false)
     let letraIcon = user?.name[0]
 
     async function deletePatient(id: string){
@@ -112,11 +110,6 @@ export default function Dashboard({patients}: HomeProps){
         </>
     )
 }
-                                /*<DeletePatient
-                                    open={open}
-                                    setOpen={setOpen}
-                                    id = {item.idpatient}
-                                />*/
 export const getServerSideProps = canSSRAuth(async(ctx) =>{
     const apiClient = setupAPIClient(ctx);
 

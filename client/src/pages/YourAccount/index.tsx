@@ -3,45 +3,45 @@ import Image from 'next/image'
 import styles from './youraccount.module.scss'
 import logoImg from '../../../public/medcloud.svg'
 import Link from 'next/link'
-import { Avatar, Button, Select, MenuItem, IconButton} from '@mui/material'
-import {Delete, Add, Edit} from '@mui/icons-material'
-import { useState, useContext } from 'react'
+import { Avatar, Button, Select, MenuItem, IconButton } from '@mui/material'
+import { Delete, Edit } from '@mui/icons-material'
+import { useContext } from 'react'
 import { canSSRAuth } from '../../utils/canSSRAuth'
 import { AuthContext } from '../../contexts/AuthContext'
 import { setupAPIClient } from '../../services/api'
 import { toast } from 'react-toastify'
 
-export default function YourAccount(){
-    const {user, signOut} = useContext(AuthContext)
+export default function YourAccount() {
+    const { user, signOut } = useContext(AuthContext)
     let letraIcon = user?.name[0]
 
-    async function delUser(iduser: string|undefined){
+    async function delUser(iduser: string | undefined) {
         console.log(iduser)
         const apiClient = setupAPIClient();
-        try{
-            await apiClient.delete('/deleteUser',{
-                params:{
+        try {
+            await apiClient.delete('/deleteUser', {
+                params: {
                     user_id: iduser,
                 }
             })
             toast.success("Deletado")
             signOut()
-        }catch(err){
+        } catch (err) {
             toast.error("Ops!")
             console.log(err)
         }
-        
+
     }
 
-    return(
+    return (
         <>
             <Head>
                 <title>Medcloud</title>
-                <link rel="icon" href="/cloud.png"/>
+                <link rel="icon" href="/cloud.png" />
             </Head>
             <div className={styles.container}>
                 <div className={styles.side}>
-                    <Image priority={true} className={styles.logo} src={logoImg} alt='logo'/>
+                    <Image priority={true} className={styles.logo} src={logoImg} alt='logo' />
                     <Link className={styles.pacient} href="/dashboard">Pacientes</Link>
                 </div>
                 <div className={styles.containerMain}>
@@ -52,7 +52,7 @@ export default function YourAccount(){
                                 variant="filled"
                             >
                                 <MenuItem className={styles.menu}>
-                                    <Link  className={styles.menuItem} href="/YourAccount">MEUS DADOS</Link> 
+                                    <Link className={styles.menuItem} href="/YourAccount">MEUS DADOS</Link>
                                 </MenuItem>
                                 <MenuItem className={styles.menu}>
                                     <Button className={styles.menuItem} variant='text' onClick={signOut}>
@@ -66,17 +66,17 @@ export default function YourAccount(){
                         <div className={styles.headDate}>
                             <h1>MEUS DADOS</h1>
                             <IconButton>
-                                <Link href="/UpdateUser"><Edit/></Link>
+                                <Link href="/updateUser"><Edit /></Link>
                             </IconButton>
                         </div>
-                        
+
                         <h2>Nome: {user?.name}</h2>
-                        <h2>Telefone: {user?.phone} </h2> 
-                        <h2>Email: {user?.email}</h2> 
+                        <h2>Telefone: {user?.phone} </h2>
+                        <h2>Email: {user?.email}</h2>
                         <Button variant='contained' onClick={() => delUser(user?.iduser)}>
-                            <Delete/> Excluir conta
+                            <Delete /> Excluir conta
                         </Button>
-                        
+
                     </div>
                 </div>
             </div>
@@ -84,8 +84,8 @@ export default function YourAccount(){
     )
 }
 
-export const getServerSideProps = canSSRAuth(async(ctx) =>{
-    return{
-        props:{}
+export const getServerSideProps = canSSRAuth(async (ctx) => {
+    return {
+        props: {}
     }
 })
