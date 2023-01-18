@@ -32,24 +32,16 @@ interface HomeProps{
 
 export default function Dashboard({patients}: HomeProps){
     const apiClient = setupAPIClient();
-    const [patList, setPatList] = useState(patients || [])
     const [patientsList, setPatientsList] = useState(patients || [])
     const {user, signOut} = useContext(AuthContext)
+    const [isOpen, setOpen] = useState(false)
     let letraIcon = user?.name[0]
 
-
-    async function detPatient(id: string) {
-        const resp = await apiClient.get('/listAllPatients', {
-            params:{
-                user_id: user?.iduser,
-            }
-        });
-        setPatList(resp.data)
+    function handleClose(){
+        setOpen(false)
     }
-
-
-
     async function deletePatient(id: string){
+        
         const apiClient = setupAPIClient();
         alert(id)
         const response = await apiClient.delete('/patientDelete',{
@@ -71,7 +63,7 @@ export default function Dashboard({patients}: HomeProps){
             </Head>
             <div className={styles.container}>
                 <div className={styles.side}>
-                    <Image priority={true} className={styles.logo} src={logoImg} alt='logo'/>
+                    <Link href="/dashboard"><Image priority={true} className={styles.logo} src={logoImg} alt='logo'/></Link>
                     <Link className={styles.pacient} href="/dashboard">Pacientes</Link>
                 </div>
                 <div className={styles.containerMain}>
@@ -100,23 +92,25 @@ export default function Dashboard({patients}: HomeProps){
                             <Add/>
                             <Link className={styles.link} href="/insert">INSERIR NOVO PACIENTE</Link>
                         </Button>
-                        {patList.map( item => (
+                        {patientsList.map( item => (
                             <section key={item.idpatient} className={styles.patientList}>
                                 <Button>
-                                    <Link href={`/patient/${item.idpatient}`}>Teste</Link>
                                     <div className={styles.headPatient}>
                                         <h1>{item.name}</h1>
-                                        <IconButton className={styles.delIcon} onClick={() => deletePatient(item.idpatient)}/*onClick={() => setOpen(false)}*/>
+                                        <Button className={styles.delIcon} onClick={() => deletePatient(item.idpatient)}/*onClick={() => setOpen(false)}*/>
                                             <Delete/>
-                                        </IconButton>
+                                        </Button>
                                     </div>
-                                    <div className={styles.contentPatient}>
-                                        <p className={styles.p}>Data de nascimento: {item.birth.slice(0,10)}</p>
-                                        <p>Email: {item.email}</p>
-                                        <p>
-                                            Endereço: {item.adress}, {item.numberAdress} - {item.district} {item.complement}, {item.city} - {item.uf}, {item.zipcode}
-                                        </p>
-                                    </div>
+                                    <Link href={`/patient/${item.idpatient}`}>
+                                        
+                                        <div className={styles.contentPatient}>
+                                            <p className={styles.p}>Data de nascimento: {item.birth.slice(0,10)}</p>
+                                            <p>Email: {item.email}</p>
+                                            <p>
+                                                Endereço: {item.adress}, {item.numberAdress} - {item.district} {item.complement}, {item.city} - {item.uf}, {item.zipcode}
+                                            </p>
+                                        </div>
+                                    </Link>
                                 </Button>
                             </section>
                         ))}

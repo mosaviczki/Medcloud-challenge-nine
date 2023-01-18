@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../../../styles/home.module.scss'
-import logoImg from '../../../public/login.png'
+import logoImg from '../../../public/Cadastro.png'
 import { Input } from '../../components/ui/Input'
 import { Button } from '../../components/ui/Button'
 import Link from 'next/link'
@@ -52,7 +52,7 @@ export default function SignUp() {
 
       <div className={styles.container}>
         <div className={styles.containerSide}>
-          <Image priority={true} src={logoImg} alt='logo' width={280}/>
+          <Image priority={true} src={logoImg} alt='logo' width={280} className={styles.logo}/>
         </div>
         <div className={styles.login}>
           <div className={styles.boxInput}>

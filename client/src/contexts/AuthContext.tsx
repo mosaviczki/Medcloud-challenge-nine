@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useState, useEffect} from "react";
-import {destroyCookie, setCookie, parseCookies} from 'nookies';
+import nookies, {destroyCookie, setCookie, parseCookies} from 'nookies';
 import Router, { useRouter } from "next/router";
 import { api } from "../services/apiClient";
 import { toast } from "react-toastify";
@@ -38,12 +38,13 @@ export const AuthContext = createContext({} as AuthContextData)
 
 export function signOut(){
     try{
-        destroyCookie(undefined, '@medcloud.token');
-        Router.push('/')
+        destroyCookie(undefined, '@medcloud.token')
+    Router.push('/')
+        
     }catch{
         console.log("Erro ao deslogar")
     }
-}
+} 
 
 export function AuthProvider({children}: AuthProviderProps){
     const [user, setUser] = useState<UserProps>()

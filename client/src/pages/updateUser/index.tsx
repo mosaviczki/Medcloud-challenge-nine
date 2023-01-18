@@ -18,13 +18,15 @@ export default function UpdateUser(){
     const [password, setPassword] = useState('')
     const [confPassword, setConfPassword] = useState('')
     let letraIcon = user?.name[0]
-
+    let userID = user?.iduser
+    
     async function updateUser(event: FormEvent) {
         event.preventDefault();
         if (password === confPassword){
             if(phone === '' || email === '' || password === '' ||  confPassword === ''){
                 toast.warning("Preencha todos os campos!")
             }else{
+                
                 try{
                     const apiUser = setupAPIClient()
                     await apiUser.put('/updUser', {
@@ -36,7 +38,10 @@ export default function UpdateUser(){
                     })
                     toast.success("Dados alterados!")
                 }catch(err){
+                    console.log(phone)
+                    console.log(email)
                     console.log(err)
+                    toast.error("Ops, ocorreu um erro!")
                 }
             }
         }else{

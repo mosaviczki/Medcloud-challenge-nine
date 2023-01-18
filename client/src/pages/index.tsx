@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../../styles/home.module.scss'
-import logoImg from '../../public/login.png'
+import logoImg from '../../public/medcloud.svg'
 import { canSSRGuest } from '../utils/canSSRGuest'
 
 import { Input } from '../components/ui/Input'
@@ -46,7 +46,11 @@ export default function Home() {
       </Head>
       <div className={styles.container}>
         <div className={styles.containerSide}>
-          <Image priority={true} src={logoImg} alt='logo' width={280}/>
+          <Image priority={true} src={logoImg} alt='logo' className={styles.logo}/>
+          <div className={styles.textSide}>
+            <h1>SEUS EXAMES</h1>
+            <h1>EM NUVEM</h1>
+          </div>
         </div>
         <div className={styles.login}>
           <div className={styles.boxInput}>

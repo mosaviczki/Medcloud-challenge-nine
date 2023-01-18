@@ -9,8 +9,27 @@
     width: 40%;
     background-color: var(--secondary-color);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    
+    .logo {
+        max-width: 80%;
+        width: auto;
+        height: auto; 
+        margin: 30px auto;
+    }
+
+    .textSide{
+        width: auto;
+        height: auto; 
+        text-align: center;
+        font-size: 1.3rem;
+        margin: 30px auto;
+        h1{
+            color: var(--white);
+        }
+    }
 
 }
 
@@ -75,5 +94,8 @@
 @media (max-widht: 820px) {
     .boxInput{
         width: 80%;
+    }
+    .textSide{
+        font-size: 0.7rem;
     }
 }

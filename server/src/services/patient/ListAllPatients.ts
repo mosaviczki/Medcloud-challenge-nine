@@ -20,7 +20,8 @@ class ListAllPatients{
                 complement:true,
                 zipcode:true,
                 city :true,
-                uf:true
+                uf:true,
+                user_id: true
             }
         })
 
