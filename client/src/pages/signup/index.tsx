@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../../../styles/home.module.scss'
+import styles from './signup.module.scss'
 import logoImg from '../../../public/Cadastro.png'
 import { Input } from '../../components/ui/Input'
 import { Button } from '../../components/ui/Button'
@@ -51,7 +51,7 @@ export default function SignUp() {
       </Head>
 
       <div className={styles.container}>
-        <div className={styles.containerSide}>
+        <div className={styles.side}>
           <Image priority={true} src={logoImg} alt='logo' width={280} className={styles.logo}/>
         </div>
         <div className={styles.login}>
