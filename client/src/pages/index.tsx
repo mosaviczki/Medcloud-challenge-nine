@@ -57,7 +57,7 @@ export default function Home() {
           <div className={styles.boxInput}>
             <h1>LOGIN</h1>
               <form onSubmit={handleLogin}>
-                <Input type="text" placeholder= "Email" value={email} onChange={(e)=> setEmail(e.target.value)}/>
+                <Input type="email" placeholder= "Email" value={email} onChange={(e)=> setEmail(e.target.value)}/>
                 <Input type="password" placeholder="Password" value={password} onChange={(e)=> setPassword(e.target.value)}/>
 
                 <Link className={styles.link} href="/signup">

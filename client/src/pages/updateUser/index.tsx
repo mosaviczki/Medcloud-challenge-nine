@@ -10,6 +10,7 @@ import { AuthContext } from '../../contexts/AuthContext'
 import { setupAPIClient } from '../../services/api'
 import { Input } from '../../components/ui/Input'
 import { toast } from 'react-toastify'
+import { Reply } from '@mui/icons-material'
 
 export default function UpdateUser(){
     const {user, signOut} = useContext(AuthContext)
@@ -79,10 +80,16 @@ export default function UpdateUser(){
                         </Button>
                     </div>
                     <div className={styles.main}>
+                        <div className={styles.return}>
+                            <Link href="/YourAccount"> 
+                                <Reply/>
+                                Voltar
+                            </Link>
+                        </div>
                         <form onSubmit={updateUser}>
                             <h1>ALTERAR DADOS</h1>
                             <Input type="number" placeholder= "Telefone" value={phone} onChange = {(e)=> setPhone(e.target.value)}/>
-                            <Input type="text" placeholder= "Email" value={email} onChange = {(e)=> setEmail(e.target.value)}/>
+                            <Input type="email" placeholder= "Email" value={email} onChange = {(e)=> setEmail(e.target.value)}/>
                             <Input type="password" placeholder="Senha" value={password} onChange = {(e)=> setPassword(e.target.value)}/>
                             <Input type="password" placeholder="Confirmar senha" value={confPassword} onChange = {(e)=> setConfPassword(e.target.value)}/>
                 

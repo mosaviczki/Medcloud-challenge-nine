@@ -165,33 +165,39 @@
     padding: 1rem;
     color: #0a2435;
 
-    .contentPatient{
-            width: 90%;
-    }
-
-    a{
+    Button{
         width: 100%;
-        padding: 1rem;
-        color: var(--secundary-color);
 
-        h1{
-            font-size: 1.5rem;
-            padding: 10px;
-        }
-        .contentPatient{
-            padding: 10px;
-        }
-        p{
+        a{
             width: 100%;
-            display: flex;
-            justify-content: flex-start;
-            font-size: 1.2rem;
-            padding: 5px;
+            padding: 1rem;
+            color: var(--secundary-color);
+
+            h1{
+                font-size: 1.5rem;
+                padding: 10px;
+                text-align: start;
+            }
+            .contentPatient{
+                padding: 10px;
+            }
+            p{
+                width: 100%;
+                display: flex;
+                justify-content: flex-start;
+                font-size: 1.2rem;
+                padding: 5px;
+                text-align: start;
+            }
         }
     }
-    .delIcon{
-        width: 10%;
-        box-shadow: none;
-    }
- 
 }
+.contentPatient{
+    width: 100%;
+}
+.delIcon{
+    width: 15%;
+    box-shadow: none;
+    align-items: flex-end;
+}
+

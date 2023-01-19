@@ -114,6 +114,15 @@
 .main{
     width: 90%;
     margin: 2rem;
+
+    .return{
+        margin: 1rem;
+
+        a{
+            color: var(--primary-color);
+        }
+        
+    }
     
     h1{
         color: var(--primary-color);

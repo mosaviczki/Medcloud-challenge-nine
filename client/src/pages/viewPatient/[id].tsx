@@ -12,6 +12,7 @@ import { Avatar, IconButton, Button, Select, MenuItem } from '@mui/material';
 import Link from 'next/link';
 import { api } from "../../services/apiClient";
 import { Delete, Edit } from "@mui/icons-material";
+import { formatDate } from "./utils";
 
 type PatientsProps = {
     idpatient: string;
@@ -30,28 +31,17 @@ type PatientsProps = {
     uf: string;
 }
 
-export default function VierPatient({patients}:PatientsProps) {
+interface HomeProps{
+    patients: PatientsProps[];
+}
+
+export default function ViewPatient({patients}:HomeProps) {
     const router = useRouter();
     const { id } = router.query;
     const [description, setDescription] = useState("")
     const {user, signOut} = useContext(AuthContext)
     const [patient, setPatient] = useState<PatientsProps>()
     let letraIcon = user?.name[0]
-    
-    async function deletePatient(idPatient: string){
-        
-        const apiClient = setupAPIClient();
-        const response = await apiClient.delete('/patientDelete',{
-            params:{
-                idpatient: idPatient,
-            }
-        })
-        const resp = await apiClient.get('/listAllPatients');
-        setPatient(resp.data)
-        toast.success("Deletado")
-        Router.push('/')
-    }
-
     useEffect(() => {
         if (!router.isReady) return;
          patients.map(function (item) {
@@ -59,7 +49,6 @@ export default function VierPatient({patients}:PatientsProps) {
                 setDescription(item.idpatient)
             }
         }); 
-        setDescription(id)
     }, [router.query.id, router.isReady]);
 
     api.get('/patient', {
@@ -72,7 +61,7 @@ export default function VierPatient({patients}:PatientsProps) {
             idpatient,name,birth,phone, cpf, rg,email,adress,numberAdress,district,complement,zipcode,city,uf
         })
     }) 
-    const data = patient?.birth.slice(0,10);
+    
     return (
         <>
             <Head>
@@ -112,13 +101,9 @@ export default function VierPatient({patients}:PatientsProps) {
                                 <Button>
                                     <Edit/>
                                 </Button>
-                                <Button onClick={() => deletePatient(id)}>
-                                    <Delete/>
-                                </Button>
                             </div>
-                           
                         </div>
-                        <h1>Data de nascimento: {data}</h1>
+                        <h1>Data de nascimento: {patient?.birth.slice(0,10)}</h1>
                         <h1>Telefone: {patient?.phone}</h1>
                         <h1>CPF: {patient?.cpf}</h1>
                         <h1>RG: {patient?.rg}</h1>

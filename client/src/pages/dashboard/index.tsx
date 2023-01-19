@@ -10,6 +10,7 @@ import { canSSRAuth } from '../../utils/canSSRAuth'
 import { AuthContext } from '../../contexts/AuthContext'
 import { setupAPIClient } from '../../services/api'
 import { toast } from 'react-toastify'
+import { formatDate } from '../viewPatient/utils'
 
 type PatientsProps ={
     idpatient: string;
@@ -31,16 +32,22 @@ interface HomeProps{
 }
 
 export default function Dashboard({patients}: HomeProps){
-    const apiClient = setupAPIClient();
     const [patientsList, setPatientsList] = useState(patients || [])
     const {user, signOut} = useContext(AuthContext)
-    const [isOpen, setOpen] = useState(false)
     let letraIcon = user?.name[0]
 
-    function handleClose(){
-        setOpen(false)
+    async function deletePatient(idPatient: string){
+        
+        const apiClient = setupAPIClient();
+        const response = await apiClient.delete('/patientDelete',{
+            params:{
+                idpatient: idPatient,
+            }
+        })
+        const resp = await apiClient.get('/listAllPatients');
+        setPatientsList(resp.data)
+        toast.success("Deletado")
     }
-    
 
     return(
         <>
@@ -95,7 +102,9 @@ export default function Dashboard({patients}: HomeProps){
                                             </div>
                                         </Link>
                                     </div>
-                            
+                                    <Button  className={styles.delIcon} onClick={() => deletePatient(item.idpatient)}>
+                                        <Delete/>
+                                    </Button>
                                 </Button>
                             </section>
                         ))}

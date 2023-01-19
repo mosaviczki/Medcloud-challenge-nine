@@ -32,11 +32,9 @@ export default function Insert(){
 
     let asterisk = "*"
 
-    
-
     async function handleRegister(event: FormEvent) {
         event.preventDefault();
-        setBirth(birth+"T00:00:00.365Z")
+        //setBirth(birth+"T00:00:00.365Z")
         try{
             if (name === '' || phone === '' || birth === '' || cpf === '' ||rg === '' ||email === '' ||adress === '' || numberAdress === '' || district === '' ||zipcode === '' ||city === '' ||uf === '' ){
                 toast.error("Preencha todos os campos!")
@@ -46,7 +44,7 @@ export default function Insert(){
             const apiClient = setupAPIClient();
             await apiClient.post('/insert',{
                 name: name,  
-                birth: birth, 
+                birth: (birth+"T00:00:00.365Z"), 
                 phone: phone, 
                 cpf: cpf, 
                 rg: rg, 
@@ -63,11 +61,12 @@ export default function Insert(){
             
 
         }catch(err){
+            alert(userId)
             toast.error("Ops, erro ao cadastrar!")
             return;
         }
         
-
+        setBirth("")
         toast.success('Cliente cadastrado com sucesso')
 
 
@@ -124,13 +123,13 @@ export default function Insert(){
                                     <div className={styles.inputBox}>
                                         <label>
                                             Telefone {asterisk}
-                                            <Input type="number" value={phone} onChange = {(e)=> setPhone(e.target.value)}/>
+                                            <Input type="number" minLength={11} maxLength={11} value={phone} onChange = {(e)=> setPhone(e.target.value)}/>
                                         </label>
                                     </div>
                                     <div className={styles.inputBox}>
                                         <label>
                                             CPF {asterisk}
-                                            <Input type="number" value={cpf} onChange = {(e)=> setCpf(e.target.value)}/>
+                                            <Input type="number" minLength={11} maxLength={11} value={cpf} onChange = {(e)=> setCpf(e.target.value)}/>
                                         </label>
                                     </div>
                                     <div className={styles.inputBox}>
@@ -177,7 +176,7 @@ export default function Insert(){
                                 <div className={styles.inputBox}>
                                         <label>
                                             CEP {asterisk}
-                                            <Input type="number" value={zipcode} onChange = {(e)=> setZipcode(e.target.value)}/>
+                                            <Input type="number" minLength={8} maxLength={8} value={zipcode} onChange = {(e)=> setZipcode(e.target.value)}/>
                                         </label>
                                     </div>
                                     <div className={styles.inputBox}>
@@ -189,7 +188,7 @@ export default function Insert(){
                                     <div className={styles.inputBox}>
                                         <label>
                                             UF {asterisk}
-                                            <Input type="UF" placeholder= "" value={uf} onChange = {(e)=> setUf(e.target.value)}/>
+                                            <Input type="UF" minLength={2} maxLength={2} placeholder= "" value={uf} onChange = {(e)=> setUf(e.target.value)}/>
                                         </label>
                                     </div>
                                 </div>

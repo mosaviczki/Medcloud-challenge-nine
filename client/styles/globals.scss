@@ -20,8 +20,15 @@ a{
     text-decoration: none;
 }
 body{
+    width: 100vw;
+    height: 100vh;
     background-color: var(--white);
     font: 400 1rem sans-serif;
+}
+
+#__next{
+    width: 100vw;
+    height: 100%;
 }
 @media (max-width: 720px) {
     html{

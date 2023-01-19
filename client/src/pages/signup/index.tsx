@@ -60,7 +60,7 @@ export default function SignUp() {
               <form onSubmit={handleSignUp}>
                 <Input type="text" placeholder= "Nome completo" value={name} onChange = {(e)=> setName(e.target.value)}/>
                 <Input type="number" placeholder= "Telefone" value={phone} onChange = {(e)=> setPhone(e.target.value)}/>
-                <Input type="text" placeholder= "Email" value={email} onChange = {(e)=> setEmail(e.target.value)}/>
+                <Input type="email" placeholder= "Email" value={email} onChange = {(e)=> setEmail(e.target.value)}/>
                 <Input type="password" placeholder="Senha" value={password} onChange = {(e)=> setPassword(e.target.value)}/>
                 <Input type="password" placeholder="Confirmar senha" value={confPassword} onChange = {(e)=> setConfPassword(e.target.value)}/>
                 <Link className={styles.link} href="/">

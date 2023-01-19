@@ -31,7 +31,7 @@ export default function YourAccount() {
             console.log(err)
         }
     }
-
+    //alert(user?.iduser)
     return (
         <>
             <Head>
