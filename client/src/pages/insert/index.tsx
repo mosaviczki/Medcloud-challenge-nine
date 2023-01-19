@@ -28,13 +28,11 @@ export default function Insert(){
     const [city, setCity] = useState("");
     const [uf, setUf] = useState("");
     let letraIcon = user?.name[0]
-    const userId = user?.iduser
 
     let asterisk = "*"
 
     async function handleRegister(event: FormEvent) {
         event.preventDefault();
-        //setBirth(birth+"T00:00:00.365Z")
         try{
             if (name === '' || phone === '' || birth === '' || cpf === '' ||rg === '' ||email === '' ||adress === '' || numberAdress === '' || district === '' ||zipcode === '' ||city === '' ||uf === '' ){
                 toast.error("Preencha todos os campos!")
@@ -56,17 +54,29 @@ export default function Insert(){
                 zipcode: zipcode, 
                 city: city, 
                 uf: uf, 
-                user_id: userId
+                user_id: user?.iduser
             })
             
 
         }catch(err){
-            alert(userId)
+            alert(user?.iduser)
             toast.error("Ops, erro ao cadastrar!")
             return;
         }
         
+        setName("")
         setBirth("")
+        setPhone("")
+        setCpf("")
+        setRg("")
+        setEmail("")
+        setAdress("")
+        setNumberAdress("")
+        setDistrict("")
+        setComplement("")
+        setZipcode("")
+        setCity("")
+        setUf("")
         toast.success('Cliente cadastrado com sucesso')
 
 
