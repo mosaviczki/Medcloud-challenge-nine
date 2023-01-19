@@ -142,4 +142,25 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    h1{
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-widht: 800px) {
+    .textSide{
+        font-size: 0.7rem;
+    }
+    .main{
+        h2{
+            font-size: 0.7rem;
+        }
+    }
+    .headDate{
+        h1{
+            font-size: 1rem;
+        }
+    }
+
 }

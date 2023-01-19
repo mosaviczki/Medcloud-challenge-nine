@@ -133,6 +133,9 @@
         padding: 1rem;
         text-align: center;
 
+        h1{
+            font-size: 1.5rem;
+        }
         input{
             width: 80%;
             margin: 1rem auto;
@@ -160,4 +163,14 @@
 }
 .save:hover {
     background-color: #1a5682;
+}
+
+@media (max-widht: 820px) {
+    .main{
+        form{
+            h1{
+                font-size: 1rem;
+            }
+        }
+    }
 }

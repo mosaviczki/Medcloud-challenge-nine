@@ -49,31 +49,6 @@
 
 }
 
-.patientRegister {
-    width: 90%;
-    margin: 2rem;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-}
-
-.insertPatient {
-    background-color: var(--primary-color);
-    border: none;
-    border-radius: 5px;
-    width: 300px;
-    height: 50px;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    padding: 12px;
-
-    .link {
-        color: white;
-    }
-}
-
 .me {
     background-color: var(--white);
     border: none;
@@ -137,7 +112,7 @@
 }
 .title{
     color: var(--secundary-color);
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     margin: 1rem 0px;
 }
 .inputBox{
@@ -209,19 +184,11 @@
     gap: 30px;
 }
 
-.labelEmail::after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 0.1rem;
-    background-color: rgba(43, 147, 221, 0.75);
-    margin: auto;
-}
 .Adress{
     color: var(--secundary-color);
-    font-size: 1.7rem;
+    font-size: 1.5rem;
 }
-.Adress::before{
+.Adress::after{
     content: '';
     display: block;
     width: 100%;
@@ -242,6 +209,17 @@
         }
         a{
             font-size: 1rem;
+        }
+    }
+    .title{
+        font-size: 1rem;
+    }
+    .Adress{
+        font-size: 1rem;
+    }
+    .inputGroup{
+        Input{
+            font-size: 0.5rem;
         }
     }
 }

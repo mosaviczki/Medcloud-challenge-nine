@@ -1,7 +1,7 @@
 
 .container {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     display: flex;
 
     *{
@@ -18,13 +18,6 @@
     width: 25%;
     padding: 10px;
 }
-.sideP{
-    background-color: #0a2435;
-    width: 25%;
-    height: 100vh;
-    padding: 10px;
-}
-
 .pacient {
     color: white;
     margin: 2rem auto;
@@ -129,16 +122,48 @@
         padding: 1rem;
         text-align: center;
 
-        input{
-            width: 80%;
-            margin: 1rem auto;
-
-        }
+        
         button{
             width: 30%;
             margin: 1rem auto;
         }
     }
+}
+
+.primarySec{
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: 48% 48%;
+    justify-content: space-between;
+    align-items: center;
+    grid-gap: 20px;
+    gap: 20px;
+}
+.secundSec{
+    width: 100%;
+    display: flex;
+    Input{
+        width: 100%;
+        margin: 10px 0px;
+        padding: 1rem;
+        border: 2px solid #AEAEAE;
+        border-radius: 5px;
+        background-color: var(--gray-input);
+        color: #7B7B7B;
+    }
+}
+.thirdSec{
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: 48% 48%;
+    justify-content: space-between;
+    align-items: center;
+    grid-gap: 20px;
+    gap: 20px;
 }
 .save {
     text-align: center;

@@ -155,40 +155,43 @@
 }
 .patientList{
     width: 100%;
-    margin: 2rem auto;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: start;
+    margin: 2rem 0px;
+    padding: 1rem;
+    color: #0a2435;
 
-    Button{
-        width: 100%;
-        box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-        text-align: start;
-        margin: auto 0px;
-        color: #0a2435;
-
-        .contentPatient{
+    .contentPatient{
             width: 90%;
-        }
-        a{
-            width: 100%;
-            padding: 1rem;
-            color: var(--secundary-color);
+    }
 
-            h1{
-                font-size: 1.5rem;
-            }
-            p{
-                width: 100%;
-                display: flex;
-                justify-content: flex-start;
-            }
+    a{
+        width: 100%;
+        padding: 1rem;
+        color: var(--secundary-color);
+
+        h1{
+            font-size: 1.5rem;
+            padding: 10px;
         }
-        .delIcon{
-            width: 10%;
-            box-shadow: none;
+        .contentPatient{
+            padding: 10px;
         }
-        
-    } 
+        p{
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            font-size: 1.2rem;
+            padding: 5px;
+        }
+    }
+    .delIcon{
+        width: 10%;
+        box-shadow: none;
+    }
+ 
 }
