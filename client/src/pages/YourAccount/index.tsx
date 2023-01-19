@@ -68,7 +68,6 @@ export default function YourAccount() {
                                 <Link href="/updateUser"><Edit /></Link>
                             </IconButton>
                         </div>
-
                         <h2>Nome: {user?.name}</h2>
                         <h2>Telefone: {user?.phone} </h2>
                         <h2>Email: {user?.email}</h2>

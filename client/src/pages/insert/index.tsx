@@ -63,7 +63,6 @@ export default function Insert(){
             
 
         }catch(err){
-            alert(userId)
             toast.error("Ops, erro ao cadastrar!")
             return;
         }
@@ -151,12 +150,6 @@ export default function Insert(){
                                 <div className={styles.section2}>
                                     <div className={styles.inputBox}>
                                         <label>
-                                            CEP {asterisk}
-                                            <Input type="number" value={zipcode} onChange = {(e)=> setZipcode(e.target.value)}/>
-                                        </label>
-                                    </div>
-                                    <div className={styles.inputBox}>
-                                        <label>
                                             Logradouro {asterisk}
                                             <Input type="text" value={adress} onChange = {(e)=> setAdress(e.target.value)}/>
                                         </label>
@@ -173,13 +166,18 @@ export default function Insert(){
                                             <Input type="text" value={district} onChange = {(e)=> setDistrict(e.target.value)}/>
                                         </label>
                                     </div>
-                                    
-                                </div>
-                                <div className={styles.section3}>
                                     <div className={styles.inputBox}>
                                         <label>
                                             Complemento 
                                             <Input type="text" value={complement} onChange={(e)=> setComplement(e.target.value)}/>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div className={styles.section3}>
+                                <div className={styles.inputBox}>
+                                        <label>
+                                            CEP {asterisk}
+                                            <Input type="number" value={zipcode} onChange = {(e)=> setZipcode(e.target.value)}/>
                                         </label>
                                     </div>
                                     <div className={styles.inputBox}>

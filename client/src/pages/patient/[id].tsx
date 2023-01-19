@@ -113,15 +113,22 @@ export default function Patient({ patients }: HomeProps) {
                     <main className={styles.main}>
                         <form onSubmit={updatePatient}>
                             <h1>ALTERAR DADOS</h1>
-                            <Input type="number" placeholder="TELEFONE" value={phone} onChange={(e) => setPhone(e.target.value)} />
-                            <Input type="text" placeholder="EMAIL" value={email} onChange={(e) => setEmail(e.target.value)} />
-                            <Input type="number" placeholder="CEP" value={zipcode} onChange={(e) => setZipcode(e.target.value)} />
-                            <Input type="text" placeholder="LOGRADOURO" value={adress} onChange={(e) => setAdress(e.target.value)} />
-                            <Input type="number" placeholder="NUMERO" name={'numberAdress'} value={numberAdress} onChange={(e) => setNumberAdress(e.target.value)} />
-                            <Input type="text" placeholder="BAIRRO" value={district} onChange={(e) => setDistrict(e.target.value)} />
-                            <Input type="text" placeholder="COMPLEMENTO" value={complement} onChange={(e) => setComplement(e.target.value)} />
-                            <Input type="text" placeholder="CIDADE" value={city} onChange={(e) => setCity(e.target.value)} />
-                            <Input type="UF" placeholder="UF" value={uf} onChange={(e) => setUf(e.target.value)} />
+                            <section className={styles.primarySec}>
+                                <Input type="number" placeholder="TELEFONE" value={phone} onChange={(e) => setPhone(e.target.value)} />
+                                <Input type="email" placeholder="EMAIL" value={email} onChange={(e) => setEmail(e.target.value)} />
+                            </section>
+                            <section className={styles.secundSec}>
+                                <Input className={styles.adress} type="text" placeholder="LOGRADOURO" value={adress} onChange={(e) => setAdress(e.target.value)} />
+                            </section>
+                            <section className={styles.thirdSec}>
+                                <Input type="number" placeholder="NUMERO" name={'numberAdress'} value={numberAdress} onChange={(e) => setNumberAdress(e.target.value)} />
+                                <Input type="text" placeholder="BAIRRO" value={district} onChange={(e) => setDistrict(e.target.value)} />
+                                <Input type="text" placeholder="COMPLEMENTO" value={complement} onChange={(e) => setComplement(e.target.value)} />
+                                <Input type="number" placeholder="CEP" value={zipcode} onChange={(e) => setZipcode(e.target.value)} />
+                                <Input type="text" placeholder="CIDADE" value={city} onChange={(e) => setCity(e.target.value)} />
+                                <Input type="UF" placeholder="UF" value={uf} onChange={(e) => setUf(e.target.value)} />
+                            </section>
+                            
 
                             <button className={styles.save}
                                 type='submit'
