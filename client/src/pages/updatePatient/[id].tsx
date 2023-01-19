@@ -115,7 +115,7 @@ export default function UpdatePatient({ patients }: HomeProps) {
                     </div>
                     <main className={styles.main}>
                         <div className={styles.return}>
-                            <Link href={`/viewPatient/${id}`}> 
+                            <Link href="/dashboard"> 
                                 <Reply/>
                                 Voltar
                             </Link>

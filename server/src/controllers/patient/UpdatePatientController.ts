@@ -8,7 +8,7 @@ class UpdatePatientController{
         const {idpatient,phone,email,adress,numberAdress,district,complement,zipcode,city,uf} = req.body;
 
         const updatePatient = new UpdatePatient();
-        const upduser = await updatePatient.execute({
+        const updPatient = await updatePatient.execute({
             idpatient,
             phone,
             email,

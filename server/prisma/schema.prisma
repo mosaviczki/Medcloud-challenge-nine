@@ -19,7 +19,7 @@ model User{
   password    String
 
   @@map("users")
-  patients Patient[]
+  //patients Patient[]
 }
 
 model Patient {
@@ -38,10 +38,10 @@ model Patient {
   city         String
   uf           String
 
-  user User @relation(fields: [user_id], references: [iduser])
+  //user User @relation(fields: [user_id], references: [iduser])
   
   @@map("patients")
-  user_id      String
+  //user_id      String
 }
 
 

@@ -14,12 +14,12 @@ interface PatientRequest {
     zipcode: string;
     city: string;
     uf: string;
-    user_id: string;
+    //user_id: string;
 }
 
 class InsertPatient {
     async execute({ name, birth, phone, cpf, rg, email, adress, numberAdress, district, 
-        complement, zipcode, city, uf, user_id }: PatientRequest) {
+        complement, zipcode, city, uf/* , user_id  */}: PatientRequest) {
 
             const patient = await prismaClient.patient.create({
                 data:{
@@ -36,7 +36,7 @@ class InsertPatient {
                     zipcode: zipcode, 
                     city: city, 
                     uf: uf, 
-                    user_id:user_id
+                    //user_id:user_id
                 }
             })
             return patient;

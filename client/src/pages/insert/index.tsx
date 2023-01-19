@@ -11,6 +11,7 @@ import { canSSRAuth } from '../../utils/canSSRAuth'
 import { AuthContext } from '../../contexts/AuthContext'
 import { Input } from '../../components/ui/Input'
 import { toast } from 'react-toastify'
+import { Reply } from '@mui/icons-material'
 
 export default function Insert(){
     const {user, signOut} = useContext(AuthContext)
@@ -53,13 +54,11 @@ export default function Insert(){
                 complement: complement, 
                 zipcode: zipcode, 
                 city: city, 
-                uf: uf, 
-                user_id: user?.iduser
+                uf: uf
             })
             
 
         }catch(err){
-            alert(user?.iduser)
             toast.error("Ops, erro ao cadastrar!")
             return;
         }
@@ -133,7 +132,7 @@ export default function Insert(){
                                     <div className={styles.inputBox}>
                                         <label>
                                             Telefone {asterisk}
-                                            <Input type="number" minLength={11} maxLength={11} value={phone} onChange = {(e)=> setPhone(e.target.value)}/>
+                                            <Input type="number" minLength={10} maxLength={11} value={phone} onChange = {(e)=> setPhone(e.target.value)}/>
                                         </label>
                                     </div>
                                     <div className={styles.inputBox}>

@@ -59,7 +59,7 @@ export default function SignUp() {
             <h1>CADASTRO</h1>
               <form onSubmit={handleSignUp}>
                 <Input type="text" placeholder= "Nome completo" value={name} onChange = {(e)=> setName(e.target.value)}/>
-                <Input type="number" placeholder= "Telefone" value={phone} onChange = {(e)=> setPhone(e.target.value)}/>
+                <Input type="number" minLength={10} maxLength={11} placeholder= "Telefone" value={phone} onChange = {(e)=> setPhone(e.target.value)}/>
                 <Input type="email" placeholder= "Email" value={email} onChange = {(e)=> setEmail(e.target.value)}/>
                 <Input type="password" placeholder="Senha" value={password} onChange = {(e)=> setPassword(e.target.value)}/>
                 <Input type="password" placeholder="Confirmar senha" value={confPassword} onChange = {(e)=> setConfPassword(e.target.value)}/>

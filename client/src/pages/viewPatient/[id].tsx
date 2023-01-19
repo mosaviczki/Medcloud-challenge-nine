@@ -11,7 +11,7 @@ import styles from './view.module.scss'
 import { Avatar, IconButton, Button, Select, MenuItem } from '@mui/material';
 import Link from 'next/link';
 import { api } from "../../services/apiClient";
-import { Delete, Edit } from "@mui/icons-material";
+import { Delete, Edit, Reply } from "@mui/icons-material";
 import { formatDate } from "./utils";
 
 type PatientsProps = {
@@ -95,23 +95,31 @@ export default function ViewPatient({patients}:HomeProps) {
                         </Button>
                     </div>
                     <main className={styles.main}>
-                        <div className={styles.headMain}>
-                            <h1>{patient?.name}</h1>
-                            <div>
-                                <Button>
-                                    <Link href={`/updatePatient/${id}`}>
-                                        <Edit/>
-                                    </Link>
-                                </Button>
-                            </div>
+                        <div className={styles.return}>
+                            <Link href="/dashboard"> 
+                                <Reply/>
+                                Voltar
+                            </Link>
                         </div>
-                        <h1>Data de nascimento: {patient?.birth.slice(0,10)}</h1>
-                        <h1>Telefone: {patient?.phone}</h1>
-                        <h1>CPF: {patient?.cpf}</h1>
-                        <h1>RG: {patient?.rg}</h1>
-                        <h1>Email: {patient?.email}</h1>
-                        <h1>Endereço: {patient?.adress}, {patient?.numberAdress} - {patient?.district} {patient?.complement}, {patient?.city} - {patient?.uf}, {patient?.zipcode}</h1>
-                    </main>
+                        <div className={styles.boxPatient}>
+                            <div className={styles.headMain}>
+                                <h1>{patient?.name}</h1>
+                                <div>
+                                    <Button>
+                                        <Link href={`/updatePatient/${id}`}>
+                                            <Edit/>
+                                        </Link>
+                                    </Button>
+                                </div>
+                            </div>
+                            <h1>Data de nascimento: {patient?.birth.slice(0,10)}</h1>
+                            <h1>Telefone: {patient?.phone}</h1>
+                            <h1>CPF: {patient?.cpf}</h1>
+                            <h1>RG: {patient?.rg}</h1>
+                            <h1>Email: {patient?.email}</h1>
+                            <h1>Endereço: {patient?.adress}, {patient?.numberAdress} - {patient?.district} {patient?.complement}, {patient?.city} - {patient?.uf}, {patient?.zipcode}</h1>
+                        </div>
+                        </main>
                 </div>
             </div>
         </>

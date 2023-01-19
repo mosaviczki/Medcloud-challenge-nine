@@ -24,7 +24,6 @@ type PatientsProps ={
     zipcode: string;
     city : string;
     uf: string;
-    user_id: string
 }
 
 interface HomeProps{
@@ -89,7 +88,7 @@ export default function Dashboard({patients}: HomeProps){
                         </Button>
                         {patientsList.map( item => (
                             <section key={item.idpatient} className={styles.patientList}>
-                                <Button>
+                                <div className={styles.boxContentPatient}>
                                     <div className={styles.contentPatient}>
                                         <Link href={`/viewPatient/${item.idpatient}`}>
                                             <h1>{item.name}</h1>
@@ -105,7 +104,7 @@ export default function Dashboard({patients}: HomeProps){
                                     <Button  className={styles.delIcon} onClick={() => deletePatient(item.idpatient)}>
                                         <Delete/>
                                     </Button>
-                                </Button>
+                                </div>
                             </section>
                         ))}
                         
