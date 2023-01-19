@@ -40,18 +40,7 @@ export default function Dashboard({patients}: HomeProps){
     function handleClose(){
         setOpen(false)
     }
-    async function deletePatient(id: string){
-        
-        const apiClient = setupAPIClient();
-        const response = await apiClient.delete('/patientDelete',{
-            params:{
-                idpatient: id,
-            }
-        })
-        const resp = await apiClient.get('/listAllPatients');
-        setPatientsList(resp.data)
-        toast.success("Deletado")
-    }
+    
 
     return(
         <>
@@ -106,9 +95,7 @@ export default function Dashboard({patients}: HomeProps){
                                             </div>
                                         </Link>
                                     </div>
-                                    <Button className={styles.delIcon} onClick={() => deletePatient(item.idpatient)}/*onClick={() => setOpen(false)}*/>
-                                        <Delete/>
-                                    </Button>
+                            
                                 </Button>
                             </section>
                         ))}

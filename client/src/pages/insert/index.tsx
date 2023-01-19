@@ -28,6 +28,7 @@ export default function Insert(){
     const [city, setCity] = useState("");
     const [uf, setUf] = useState("");
     let letraIcon = user?.name[0]
+    const userId = user?.iduser
 
     let asterisk = "*"
 
@@ -57,12 +58,12 @@ export default function Insert(){
                 zipcode: zipcode, 
                 city: city, 
                 uf: uf, 
-                user_id: user?.iduser
+                user_id: userId
             })
             
 
         }catch(err){
-            alert(user?.iduser)
+            alert(userId)
             toast.error("Ops, erro ao cadastrar!")
             return;
         }

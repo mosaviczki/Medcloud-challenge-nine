@@ -3,7 +3,7 @@ import { canSSRAuth } from '../../utils/canSSRAuth'
 import { AuthContext } from '../../contexts/AuthContext'
 import { setupAPIClient } from '../../services/api'
 import { toast } from 'react-toastify'
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import Head from "next/head";
 import Image from 'next/image'
 import logoImg from '../../../public/medcloud.svg'
@@ -11,6 +11,7 @@ import styles from './view.module.scss'
 import { Avatar, IconButton, Button, Select, MenuItem } from '@mui/material';
 import Link from 'next/link';
 import { api } from "../../services/apiClient";
+import { Delete, Edit } from "@mui/icons-material";
 
 type PatientsProps = {
     idpatient: string;
@@ -37,6 +38,19 @@ export default function VierPatient({patients}:PatientsProps) {
     const [patient, setPatient] = useState<PatientsProps>()
     let letraIcon = user?.name[0]
     
+    async function deletePatient(idPatient: string){
+        
+        const apiClient = setupAPIClient();
+        const response = await apiClient.delete('/patientDelete',{
+            params:{
+                idpatient: idPatient,
+            }
+        })
+        const resp = await apiClient.get('/listAllPatients');
+        setPatient(resp.data)
+        toast.success("Deletado")
+        Router.push('/')
+    }
 
     useEffect(() => {
         if (!router.isReady) return;
@@ -92,7 +106,18 @@ export default function VierPatient({patients}:PatientsProps) {
                         </Button>
                     </div>
                     <main className={styles.main}>
-                        <h1>{patient?.name}</h1>
+                        <div className={styles.headMain}>
+                            <h1>{patient?.name}</h1>
+                            <div>
+                                <Button>
+                                    <Edit/>
+                                </Button>
+                                <Button onClick={() => deletePatient(id)}>
+                                    <Delete/>
+                                </Button>
+                            </div>
+                           
+                        </div>
                         <h1>Data de nascimento: {data}</h1>
                         <h1>Telefone: {patient?.phone}</h1>
                         <h1>CPF: {patient?.cpf}</h1>

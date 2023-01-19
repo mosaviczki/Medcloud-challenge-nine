@@ -6,7 +6,6 @@ class ListOnePatientController{
         const idpatient =  req.query.idpatient as string;
 
         const listOnePatient = new ListOnePatient();
-        console.log("ID: ", idpatient)
         const patient = await listOnePatient.execute({
             idpatient
         });
