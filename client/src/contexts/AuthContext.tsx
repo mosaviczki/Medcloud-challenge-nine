@@ -49,7 +49,6 @@ export function signOut(){
 export function AuthProvider({children}: AuthProviderProps){
     const [user, setUser] = useState<UserProps>()
     const isAuthenticated = !!user;
-    const router = useRouter()
 
     useEffect(()=>{
         // acessar dados do cookie

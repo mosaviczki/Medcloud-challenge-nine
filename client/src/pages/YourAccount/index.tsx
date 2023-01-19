@@ -30,7 +30,6 @@ export default function YourAccount() {
             toast.error("Ops!")
             console.log(err)
         }
-
     }
 
     return (

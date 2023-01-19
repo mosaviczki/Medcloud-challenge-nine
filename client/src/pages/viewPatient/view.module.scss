@@ -16,7 +16,12 @@
 .side {
     background-color: #0a2435;
     width: 25%;
-    height: 100%;
+    padding: 10px;
+}
+.sideP{
+    background-color: #0a2435;
+    width: 25%;
+    height: 100vh;
     padding: 10px;
 }
 
@@ -37,6 +42,7 @@
 
 .containerMain {
     width: 75%;
+    height: 100%;
 
     .head {
         display: flex;
@@ -106,89 +112,10 @@
 .main{
     width: 90%;
     margin: 2rem;
-
-    .buttonInsert{
-        height: 3rem;
-    }
-    .link{
-        font-size: 1rem;
-        font-weight: bold;
-        color: var(--white);
-    }
-}
-.patientBox {
-    width: 90%;
     box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    display: flex;
-    margin: 15px 0px;
-
-    .delete {
-        color: rgb(211, 11, 11);
-    }
-
-    .edit {
-        color: var(--primary-color);
-    }
-}
-
-.headPatient{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    padding: 10px;
+    padding: 2rem;
     h1{
-        width: 70%;
-        text-align: start;
+        font-size: 1.5rem;
     }
-    .delIcon{
-        width: 30%;
-        box-shadow: none;
-    }
-    .delIcon:hover{
-        background-color: none;
-    }
-}
-.contentPatient{
-    width: 100%;
-    padding: 10px;
-}
-.patientList{
-    width: 100%;
-    margin: 2rem auto;
-
-    Button{
-        width: 100%;
-        box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-        text-align: start;
-        margin: auto 0px;
-        color: #0a2435;
-
-        .contentPatient{
-            width: 90%;
-        }
-        a{
-            width: 100%;
-            padding: 1rem;
-            color: var(--secundary-color);
-
-            h1{
-                font-size: 1.5rem;
-            }
-            p{
-                width: 100%;
-                display: flex;
-                justify-content: flex-start;
-            }
-        }
-        .delIcon{
-            width: 10%;
-            box-shadow: none;
-        }
-        
-    } 
+    
 }

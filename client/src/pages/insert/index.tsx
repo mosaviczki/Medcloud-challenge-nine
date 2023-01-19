@@ -27,18 +27,15 @@ export default function Insert(){
     const [zipcode, setZipcode] = useState("");
     const [city, setCity] = useState("");
     const [uf, setUf] = useState("");
-    const [loading, setLoading] = useState(false);
     let letraIcon = user?.name[0]
-    let userId = user?.iduser
 
     let asterisk = "*"
 
     
 
-     async function handleRegister(event: FormEvent) {
+    async function handleRegister(event: FormEvent) {
         event.preventDefault();
-        console.log(birth)
-        console.log(userId)
+        setBirth(birth+"T00:00:00.365Z")
         try{
             if (name === '' || phone === '' || birth === '' || cpf === '' ||rg === '' ||email === '' ||adress === '' || numberAdress === '' || district === '' ||zipcode === '' ||city === '' ||uf === '' ){
                 toast.error("Preencha todos os campos!")
@@ -60,11 +57,12 @@ export default function Insert(){
                 zipcode: zipcode, 
                 city: city, 
                 uf: uf, 
-                user_id: userId
+                user_id: user?.iduser
             })
             
 
         }catch(err){
+            alert(user?.iduser)
             toast.error("Ops, erro ao cadastrar!")
             return;
         }
@@ -120,7 +118,7 @@ export default function Insert(){
                                     <div className={styles.inputBox}>
                                         <label>
                                             Data de nascimento {asterisk}
-                                            <Input type="text" value={birth} onChange = {(e)=> setBirth(e.target.value)}/>
+                                            <Input type="date" value={birth} onChange = {(e)=> setBirth(e.target.value)}/>
                                         </label>
                                     </div>
                                     <div className={styles.inputBox}>
@@ -145,7 +143,7 @@ export default function Insert(){
                                 <div className={styles.inputBox}>
                                     <label>
                                         Email {asterisk}
-                                    <Input type="text" placeholder= "Email" value={email} onChange = {(e)=> setEmail(e.target.value)}/>
+                                        <Input type="email" placeholder= "Email" value={email} onChange = {(e)=> setEmail(e.target.value)}/>
                                     </label>
                                 </div>    
                                 <h1 className={styles.Adress}>ENDEREÇO</h1>
@@ -153,7 +151,7 @@ export default function Insert(){
                                     <div className={styles.inputBox}>
                                         <label>
                                             CEP {asterisk}
-                                            <Input type="number"  value={zipcode} onChange = {(e)=> setZipcode(e.target.value)}/>
+                                            <Input type="number" value={zipcode} onChange = {(e)=> setZipcode(e.target.value)}/>
                                         </label>
                                     </div>
                                     <div className={styles.inputBox}>

@@ -43,7 +43,6 @@ export default function Dashboard({patients}: HomeProps){
     async function deletePatient(id: string){
         
         const apiClient = setupAPIClient();
-        alert(id)
         const response = await apiClient.delete('/patientDelete',{
             params:{
                 idpatient: id,
@@ -95,22 +94,21 @@ export default function Dashboard({patients}: HomeProps){
                         {patientsList.map( item => (
                             <section key={item.idpatient} className={styles.patientList}>
                                 <Button>
-                                    <div className={styles.headPatient}>
-                                        <h1>{item.name}</h1>
-                                        <Button className={styles.delIcon} onClick={() => deletePatient(item.idpatient)}/*onClick={() => setOpen(false)}*/>
-                                            <Delete/>
-                                        </Button>
+                                    <div className={styles.contentPatient}>
+                                        <Link href={`/viewPatient/${item.idpatient}`}>
+                                            <h1>{item.name}</h1>
+                                            <div className={styles.contentPatient}>
+                                                <p className={styles.p}>Data de nascimento: {item.birth.slice(0,10)}</p>
+                                                <p>Email: {item.email}</p>
+                                                <p>
+                                                    Endereço: {item.adress}, {item.numberAdress} - {item.district} {item.complement}, {item.city} - {item.uf}, {item.zipcode}
+                                                </p>
+                                            </div>
+                                        </Link>
                                     </div>
-                                    <Link href={`/patient/${item.idpatient}`}>
-                                        
-                                        <div className={styles.contentPatient}>
-                                            <p className={styles.p}>Data de nascimento: {item.birth.slice(0,10)}</p>
-                                            <p>Email: {item.email}</p>
-                                            <p>
-                                                Endereço: {item.adress}, {item.numberAdress} - {item.district} {item.complement}, {item.city} - {item.uf}, {item.zipcode}
-                                            </p>
-                                        </div>
-                                    </Link>
+                                    <Button className={styles.delIcon} onClick={() => deletePatient(item.idpatient)}/*onClick={() => setOpen(false)}*/>
+                                        <Delete/>
+                                    </Button>
                                 </Button>
                             </section>
                         ))}

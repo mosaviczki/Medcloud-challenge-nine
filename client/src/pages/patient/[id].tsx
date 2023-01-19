@@ -48,7 +48,6 @@ export default function Patient({ patients }: HomeProps) {
 
     useEffect(() => {
         if (!router.isReady) return;
-        console.log(id);
         patients.map(function (item) {
             if (item.idpatient === id) {
                 setDescription(item.idpatient)

@@ -5,7 +5,6 @@ interface PatientRequest{
 }
 class ListOnePatient{
     async execute({idpatient}: PatientRequest){
-        console.log(idpatient)
         const findByPatients = await prismaClient.patient.findUnique({
             where:{
                 idpatient: idpatient
@@ -13,6 +12,9 @@ class ListOnePatient{
             select:{
                 name: true,
                 birth: true,
+                phone: true,
+                cpf: true,
+                rg: true,
                 email: true,
                 adress: true,
                 numberAdress: true,

@@ -7,15 +7,18 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Image from 'next/image'
 import logoImg from '../../../public/medcloud.svg'
-import styles from './patient.module.scss'
+import styles from './view.module.scss'
 import { Avatar, IconButton, Button, Select, MenuItem } from '@mui/material';
 import Link from 'next/link';
-import { Input } from "../../components/ui/Input";
+import { api } from "../../services/apiClient";
 
 type PatientsProps = {
     idpatient: string;
     name: string;
     birth: string;
+    phone:string;
+    cpf: string;
+    rg: string;
     email: string;
     adress: string;
     numberAdress: string;
@@ -26,58 +29,36 @@ type PatientsProps = {
     uf: string;
 }
 
-interface HomeProps {
-    patients: PatientsProps[];
-}
-
-export default function Patient({ patients }: HomeProps) {
+export default function VierPatient({patients}:PatientsProps) {
     const router = useRouter();
     const { id } = router.query;
     const [description, setDescription] = useState("")
-    const { user, signOut } = useContext(AuthContext)
-    const [phone, setPhone] = useState("");
-    const [email, setEmail] = useState("");
-    const [adress, setAdress] = useState("");
-    const [numberAdress, setNumberAdress] = useState("");
-    const [district, setDistrict] = useState("");
-    const [complement, setComplement] = useState("");
-    const [zipcode, setZipcode] = useState("");
-    const [city, setCity] = useState("");
-    const [uf, setUf] = useState("");
+    const {user, signOut} = useContext(AuthContext)
+    const [patient, setPatient] = useState<PatientsProps>()
     let letraIcon = user?.name[0]
+    
 
     useEffect(() => {
         if (!router.isReady) return;
-        patients.map(function (item) {
+         patients.map(function (item) {
             if (item.idpatient === id) {
                 setDescription(item.idpatient)
             }
-        });
-
+        }); 
+        setDescription(id)
     }, [router.query.id, router.isReady]);
 
-    async function updatePatient(event: FormEvent) {
-        event.preventDefault();
-        try {
-            const apiClient = setupAPIClient()
-            await apiClient.put('/patientUpdate', {
-                idpatient: description,
-                phone: phone,
-                email: email,
-                adress: adress,
-                numberAdress: numberAdress,
-                district: district,
-                complement: complement,
-                zipcode: zipcode,
-                city: city,
-                uf: uf
-            })
-            toast.success("Dados alterados!")
-        } catch (err) {
-            console.log(err)
+    api.get('/patient', {
+        params:{
+            idpatient: id 
         }
-    }
-
+    }).then(response =>{
+        const {idpatient,name,birth,phone, cpf, rg,email,adress,numberAdress,district,complement,zipcode,city,uf} = response.data;
+        setPatient({
+            idpatient,name,birth,phone, cpf, rg,email,adress,numberAdress,district,complement,zipcode,city,uf
+        })
+    }) 
+    const data = patient?.birth.slice(0,10);
     return (
         <>
             <Head>
@@ -86,7 +67,7 @@ export default function Patient({ patients }: HomeProps) {
                 <link rel="icon" href="/cloud.png" />
             </Head>
             <div className={styles.container}>
-                <div className={styles.sideP}>
+                <div className={styles.side}>
                     <Image priority={true} className={styles.logo} src={logoImg} alt='logo' />
                     <Link className={styles.pacient} href="/dashboard">Pacientes</Link>
                 </div>
@@ -111,7 +92,13 @@ export default function Patient({ patients }: HomeProps) {
                         </Button>
                     </div>
                     <main className={styles.main}>
-                        
+                        <h1>{patient?.name}</h1>
+                        <h1>Data de nascimento: {data}</h1>
+                        <h1>Telefone: {patient?.phone}</h1>
+                        <h1>CPF: {patient?.cpf}</h1>
+                        <h1>RG: {patient?.rg}</h1>
+                        <h1>Email: {patient?.name}</h1>
+                        <h1>Endereço: {patient?.adress}, {patient?.numberAdress} - {patient?.district} {patient?.complement}, {patient?.city} - {patient?.uf}, {patient?.zipcode}</h1>
                     </main>
                 </div>
             </div>
@@ -128,4 +115,4 @@ export const getServerSideProps = canSSRAuth(async (ctx) => {
             patients: response.data
         }
     }
-})
+}) 
