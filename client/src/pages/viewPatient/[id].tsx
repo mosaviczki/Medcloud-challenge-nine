@@ -99,7 +99,9 @@ export default function ViewPatient({patients}:HomeProps) {
                             <h1>{patient?.name}</h1>
                             <div>
                                 <Button>
-                                    <Edit/>
+                                    <Link href={`/updatePatient/${id}`}>
+                                        <Edit/>
+                                    </Link>
                                 </Button>
                             </div>
                         </div>
@@ -107,7 +109,7 @@ export default function ViewPatient({patients}:HomeProps) {
                         <h1>Telefone: {patient?.phone}</h1>
                         <h1>CPF: {patient?.cpf}</h1>
                         <h1>RG: {patient?.rg}</h1>
-                        <h1>Email: {patient?.name}</h1>
+                        <h1>Email: {patient?.email}</h1>
                         <h1>Endereço: {patient?.adress}, {patient?.numberAdress} - {patient?.district} {patient?.complement}, {patient?.city} - {patient?.uf}, {patient?.zipcode}</h1>
                     </main>
                 </div>

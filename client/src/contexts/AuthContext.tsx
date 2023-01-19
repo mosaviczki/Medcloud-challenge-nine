@@ -39,9 +39,9 @@ export const AuthContext = createContext({} as AuthContextData)
 export function signOut(){
     try{
         destroyCookie(undefined, '@medcloud.token')
-    Router.push('/')
-        
+        Router.push('/')
     }catch{
+        toast.error("Erro ao deslogar")
         console.log("Erro ao deslogar")
     }
 } 

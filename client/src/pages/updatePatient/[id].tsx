@@ -8,9 +8,10 @@ import Head from "next/head";
 import Image from 'next/image'
 import logoImg from '../../../public/medcloud.svg'
 import styles from './patient.module.scss'
-import { Avatar, IconButton, Button, Select, MenuItem } from '@mui/material';
+import { Avatar, Button, Select, MenuItem } from '@mui/material';
 import Link from 'next/link';
 import { Input } from "../../components/ui/Input";
+import { Reply } from "@mui/icons-material";
 
 type PatientsProps = {
     idpatient: string;
@@ -30,7 +31,7 @@ interface HomeProps {
     patients: PatientsProps[];
 }
 
-export default function Patient({ patients }: HomeProps) {
+export default function UpdatePatient({ patients }: HomeProps) {
     const router = useRouter();
     const { id } = router.query;
     const [description, setDescription] = useState("")
@@ -61,7 +62,7 @@ export default function Patient({ patients }: HomeProps) {
         try {
             const apiClient = setupAPIClient()
             await apiClient.put('/patientUpdate', {
-                idpatient: description,
+                idpatient: id,
                 phone: phone,
                 email: email,
                 adress: adress,
@@ -73,8 +74,10 @@ export default function Patient({ patients }: HomeProps) {
                 uf: uf
             })
             toast.success("Dados alterados!")
+            router.push('/')
         } catch (err) {
             console.log(err)
+            toast.error("Ops!")
         }
     }
 
@@ -111,6 +114,12 @@ export default function Patient({ patients }: HomeProps) {
                         </Button>
                     </div>
                     <main className={styles.main}>
+                        <div className={styles.return}>
+                            <Link href={`/viewPatient/${id}`}> 
+                                <Reply/>
+                                Voltar
+                            </Link>
+                        </div>
                         <form onSubmit={updatePatient}>
                             <h1>ALTERAR DADOS</h1>
                             <section className={styles.primarySec}>

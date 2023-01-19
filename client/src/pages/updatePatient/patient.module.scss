@@ -46,14 +46,6 @@
 
 }
 
-.patientRegister {
-    width: 90%;
-    margin: 2rem;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-}
-
 .me {
     background-color: var(--white);
     border: none;
@@ -77,42 +69,16 @@
         font-family: Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
     }
 }
-
-.insertPatient {
-    background-color: var(--primary-color);
-    border: none;
-    border-radius: 5px;
-    width: 300px;
-    height: 50px;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    padding: 12px;
-
-    .link {
-        color: white;
-    }
-}
-.insertPatient:hover {
-    background-color: #277ab6;
-}
-
-.insertPatient:active {
-    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6), inset 2px 2px 3px rgba(0, 0, 0, 0.6);
-}
-
 .main{
     width: 90%;
     margin: 2rem;
 
-    .buttonInsert{
-        height: 3rem;
-    }
-    .link{
-        font-size: 1rem;
-        font-weight: bold;
-        color: var(--white);
+    .return{
+        margin: 1rem;
+
+        a{
+            color: var(--primary-color);
+        }
     }
 
     form{
