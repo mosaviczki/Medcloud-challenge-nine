@@ -56,13 +56,12 @@ export default function UpdatePatient({ patients }: HomeProps) {
         });
 
     }, [router.query.id, router.isReady]);
-
     async function updatePatient(event: FormEvent) {
         event.preventDefault();
         try {
             const apiClient = setupAPIClient()
             await apiClient.put('/patientUpdate', {
-                idpatient: id,
+                idpatient: description,
                 phone: phone,
                 email: email,
                 adress: adress,

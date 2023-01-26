@@ -20,7 +20,7 @@ export default function UpdateUser(){
     const [confPassword, setConfPassword] = useState('')
     let letraIcon = user?.name[0]
     let userID = user?.iduser
-    
+    //alert(userID)
     async function updateUser(event: FormEvent) {
         event.preventDefault();
         if (password === confPassword){
