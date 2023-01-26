@@ -54,3 +54,7 @@ Medcloud's challenge for Dev Full Stack.
 - Affection in decoupling components (other layers, service, repository)
 
 According to the above criteria, we will evaluate your test in order to proceed to the technical interview. If you have not acceptably achieved what we are proposing above, we will not proceed with the process.
+
+## For the .env
+- DATABASE_URL="mysql://user:password@medcloud.cwwopkpwrdy7.us-east-1.rds.amazonaws.com:3306/database?schema=public""
+- JWT_SECRET = gerar algum código criptografado
