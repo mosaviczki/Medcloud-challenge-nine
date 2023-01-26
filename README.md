@@ -56,5 +56,15 @@ Medcloud's challenge for Dev Full Stack.
 According to the above criteria, we will evaluate your test in order to proceed to the technical interview. If you have not acceptably achieved what we are proposing above, we will not proceed with the process.
 
 ## For the .env
-- DATABASE_URL="mysql://user:password@medcloud.cwwopkpwrdy7.us-east-1.rds.amazonaws.com:3306/database?schema=public""
+- DATABASE_URL="mysql://user:password@host:port/database?schema=public""
 - JWT_SECRET = gerar algum código criptografado
+
+## Running the code
+When creating and connecting to the database, create the tables by the command:
+```yarn prisma migrate dev```
+
+And then run the server with:
+```yarn dev```
+
+With the server running, on the client side, just give
+```yarn dev```
